@@ -6,5 +6,8 @@ of problems using **ChatGPT-4o mini** and **Codestral 25.01**.
 
 File Instructions:
 - Report.pdf: Contains our writeup for this project.
-- Zero_shot.csv: Contains raw outputs for zero-shot prompting. 
-- Few_shot.csv: Caontians raw outputs for few-shot prompting.
+- Zero_shot.csv: Contains raw prompts and outputs for zero-shot prompting. 
+- Few_shot.csv: Caontians raw prompts and outputs for few-shot prompting.
+- zero_shot.ipynb: Scripts used to run zero-shot prompts.
+- few_shot.ipynb: Script used to run few-shot prompts.
+
