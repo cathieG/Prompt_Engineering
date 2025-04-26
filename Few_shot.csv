@@ -1,0 +1,3020 @@
+prompt_id,parameters,prompt_text,model_name,output_text,score
+1,"max_tokens=1024,
+ temperature = 0.3","
+    You are a helpful assistant that summarizes the functionality of Java codes.
+
+    ### Example 1
+    Code:
+    public int add(int a, int b) {
+        return a + b;
+    }
+    Summary:
+    Returns the sum of two integers.
+
+    ### Example 2
+    Code:
+    public boolean isEven(int number) {
+        return number % 2 == 0;
+    }
+    Summary:
+    Checks whether a number is even.
+    ### Now summarize the following method:
+
+
+    Code:
+    
+    Prompt: Please provide a two-sentence or less summary of the following method:
+
+    
+    public Map < String , Integer > countWordFrequency ( List < String > words ) {
+    Map < String , Integer > freqMap = new HashMap < >() ;
+    for ( String word : words ) {
+        freqMap . put ( word , freqMap . getOrDefault ( word , 0) + 1) ;
+    }
+    return freqMap ;
+    }
+
+
+    Summary:
+    ",Codestral-2501,"The method `countWordFrequency` takes a list of strings and returns a map where each string is a key and its value is the frequency of that string in the list. It iterates through the list, updating the frequency count for each word in the map.",Bleu-score: 9.4884
+1,"max_tokens=1024,
+ temperature = 0.3","
+    You are a helpful assistant that summarizes the functionality of Java codes.
+
+    ### Example 1
+    Code:
+    public int add(int a, int b) {
+        return a + b;
+    }
+    Summary:
+    Returns the sum of two integers.
+
+    ### Example 2
+    Code:
+    public boolean isEven(int number) {
+        return number % 2 == 0;
+    }
+    Summary:
+    Checks whether a number is even.
+    ### Now summarize the following method:
+
+
+    Code:
+    
+    Prompt: Please provide a two-sentence or less summary of the following method:
+
+    
+    public Map < String , Integer > countWordFrequency ( List < String > words ) {
+    Map < String , Integer > freqMap = new HashMap < >() ;
+    for ( String word : words ) {
+        freqMap . put ( word , freqMap . getOrDefault ( word , 0) + 1) ;
+    }
+    return freqMap ;
+    }
+
+
+    Summary:
+    ",GPT-4o-mini,"Summary:
+Counts the frequency of each word in a list and returns a map with words as keys and their corresponding counts as values.",Bleu-score: 9.4884
+2,"max_tokens=1024,
+ temperature = 0.3","
+    Your job is to identify the one-off bugs in python codes and fix them.
+
+    ### Example 1
+    The function calculates the sum of all integers from start to end, inclusive. However, the original function uses range(start, end), which excludes the end value. This leads to an incomplete summation by omitting the final number.
+    Original Code:
+    def sum_range(start, end):
+        total = 0
+       for i in range(start, end):
+           total += i
+       return total
+
+    Corrected Code:
+    def sum_range(start, end):
+        total = 0
+       for i in range(start, end + 1):
+            total += i
+       return total
+
+    ### Example 2
+    The function is intended to add up all the integers from start to end, including both endpoints. But because range(start, end) doesn't include end, the function misses the last number and gives a result that's too small.
+    Original Code:
+    def sum_range(start, end):
+        total = 0
+        for i in range(start, end):
+            total += i
+            return total
+
+    Corrected Code:
+    def sum_range(start, end):
+        total = 0
+        for i in range(start, end + 1):
+            total += i
+        return total
+
+Now, given the code: 
+    def sum_range ( start , end ) :
+        total = 0
+        for i in range ( start , end ) :
+            total += i
+        return total
+
+
+    Describe the function, identify the one-off bug, 
+    and correct the code like the examples. You only need to 
+    return the corrected code.
+
+",Codestral-2501,"The function `sum_range` is intended to calculate the sum of all integers from `start` to `end`, inclusive. However, the original code uses `range(start, end)`, which excludes the `end` value. This results in an incomplete summation by omitting the final number.
+
+Corrected Code:
+```python
+def sum_range(start, end):
+    total = 0
+    for i in range(start, end + 1):
+        total += i
+    return total
+```",Exact Match: False
+2,"max_tokens=1024,
+ temperature = 0.3","
+    Your job is to identify the one-off bugs in python codes and fix them.
+
+    ### Example 1
+    The function calculates the sum of all integers from start to end, inclusive. However, the original function uses range(start, end), which excludes the end value. This leads to an incomplete summation by omitting the final number.
+    Original Code:
+    def sum_range(start, end):
+        total = 0
+       for i in range(start, end):
+           total += i
+       return total
+
+    Corrected Code:
+    def sum_range(start, end):
+        total = 0
+       for i in range(start, end + 1):
+            total += i
+       return total
+
+    ### Example 2
+    The function is intended to add up all the integers from start to end, including both endpoints. But because range(start, end) doesn't include end, the function misses the last number and gives a result that's too small.
+    Original Code:
+    def sum_range(start, end):
+        total = 0
+        for i in range(start, end):
+            total += i
+            return total
+
+    Corrected Code:
+    def sum_range(start, end):
+        total = 0
+        for i in range(start, end + 1):
+            total += i
+        return total
+
+Now, given the code: 
+    def sum_range ( start , end ) :
+        total = 0
+        for i in range ( start , end ) :
+            total += i
+        return total
+
+
+    Describe the function, identify the one-off bug, 
+    and correct the code like the examples. You only need to 
+    return the corrected code.
+
+",GPT-4o-mini,"```python
+def sum_range(start, end):
+    total = 0
+    for i in range(start, end + 1):
+        total += i
+    return total
+```",Exact Match: False
+3,"max_tokens=1024,
+ temperature = 0.3","
+    Your job is to classify the type of bug C++ functions.
+    ### Example 1:
+    code:
+    int* getArray(int size) {
+    int arr[size]; // Warning: local array
+    return arr;    // Bug: returning pointer to local variable}
+
+    Bug Classification: Returning pointer to local variable
+    Detailed Bug Explanation: The function attempts to return an array of integers.
+    However, the array is declared as a local variable inside the function.
+    Returning a pointer to this local array is invalid because the memory is deallocated
+    once the function exits, leading to undefined behavior.
+
+    ### Example 2:
+    code:
+    void printArray(int* arr, int size) {
+    for (int i = 0; i <= size; ++i) {
+        std::cout << arr[i] << std::endl; } }
+
+    Bug Classification: Off-by-one error (out-of-bounds access)
+    Detailed Bug Explanation: This function uses a loop to iterate through an array,
+    but it goes one step beyond the last valid index. Since valid indices go from 0 to
+    size - 1, accessing index size causes undefined behavior.
+
+    Now, given the code 
+    int * getArray (int size ) {
+        int arr [ size ]; // Warning : local array
+        return arr ; // Bug: returning pointer to local variable
+}
+
+
+    Classify the type of bug in the c++ function. You only need to 
+    return the bug classification.
+
+",Codestral-2501,Returning pointer to local variable,Bleu-score: 54.88116
+3,"max_tokens=1024,
+ temperature = 0.3","
+    Your job is to classify the type of bug C++ functions.
+    ### Example 1:
+    code:
+    int* getArray(int size) {
+    int arr[size]; // Warning: local array
+    return arr;    // Bug: returning pointer to local variable}
+
+    Bug Classification: Returning pointer to local variable
+    Detailed Bug Explanation: The function attempts to return an array of integers.
+    However, the array is declared as a local variable inside the function.
+    Returning a pointer to this local array is invalid because the memory is deallocated
+    once the function exits, leading to undefined behavior.
+
+    ### Example 2:
+    code:
+    void printArray(int* arr, int size) {
+    for (int i = 0; i <= size; ++i) {
+        std::cout << arr[i] << std::endl; } }
+
+    Bug Classification: Off-by-one error (out-of-bounds access)
+    Detailed Bug Explanation: This function uses a loop to iterate through an array,
+    but it goes one step beyond the last valid index. Since valid indices go from 0 to
+    size - 1, accessing index size causes undefined behavior.
+
+    Now, given the code 
+    int * getArray (int size ) {
+        int arr [ size ]; // Warning : local array
+        return arr ; // Bug: returning pointer to local variable
+}
+
+
+    Classify the type of bug in the c++ function. You only need to 
+    return the bug classification.
+
+",GPT-4o-mini,Bug Classification: Returning pointer to local variable,Bleu-score: 54.88116
+4,"max_tokens=1024,
+ temperature = 0.3","
+
+    You are to help complete a function using regex to validate email addresses.
+    ### Example 1:
+
+    def is_valid_email(email):
+        import re
+        pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+        return re.match(pattern, email) is not None
+
+
+    ### Example 2:
+
+    def is_valid_email(email):
+        import re
+        pattern = r'^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        return re.match(pattern, email) is not None
+
+
+    Now, complete the following function using regex to validate 
+    basic email addresses. You just need to provide the final function. 
+    No need for explanations or examples.: 
+
+    def is_valid_email ( email ):
+    # TODO : Complete using regex
+    pass
+",Codestral-2501,"```python
+def is_valid_email(email):
+    import re
+    pattern = r'^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return re.match(pattern, email) is not None
+```",Exact Match: False
+4,"max_tokens=1024,
+ temperature = 0.3","
+
+    You are to help complete a function using regex to validate email addresses.
+    ### Example 1:
+
+    def is_valid_email(email):
+        import re
+        pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+        return re.match(pattern, email) is not None
+
+
+    ### Example 2:
+
+    def is_valid_email(email):
+        import re
+        pattern = r'^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        return re.match(pattern, email) is not None
+
+
+    Now, complete the following function using regex to validate 
+    basic email addresses. You just need to provide the final function. 
+    No need for explanations or examples.: 
+
+    def is_valid_email ( email ):
+    # TODO : Complete using regex
+    pass
+",GPT-4o-mini,"```python
+def is_valid_email(email):
+    import re
+    pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+    return re.match(pattern, email) is not None
+```",Exact Match: False
+5,"max_tokens=1024,
+ temperature = 0.3","
+    You job is to create a ‘/greet/<username>‘ endpoint that returns a JSON greeting:
+
+    ### Example 1:
+    Original code:
+    from flask import Flask, jsonify
+    app = Flask(__name__)
+
+    @app.route('/greet/<username>')
+    def greet(username):
+        # TODO: Return a JSON greeting
+        pass
+
+    Completed code:
+    from flask import Flask, jsonify
+    app = Flask(__name__)
+
+    @app.route('/greet/<username>')
+    def greet(username):
+        return jsonify({'message': f'Hello, {username}!'})
+
+
+    ### Example 2:
+    Original code:
+    from flask import Flask, jsonify
+    app = Flask(__name__)
+
+    @app.route('/greet/<username>')
+    def greet(username):
+        # TODO: Return a JSON greeting
+        pass
+
+    Completed code:
+    from flask import Flask, jsonify
+    app = Flask(__name__)
+
+    @app.route('/greet/<username>')
+    def greet(username):
+        response = {'message': 'Hello, ' + username + '!'}
+        return jsonify(response)
+
+    Now, create a ‘/greet/<username>‘ 
+    endpoint that returns a JSON greeting given the code. 
+    You only need to provide the corrected code. No need for
+    explanations or examples: 
+    from flask import Flask , jsonify
+    app = Flask ( __name__ )
+    @app . route (’/ greet / < username >’)
+    def greet ( username ) :
+        # TODO : Return a JSON greeting
+        pass
+
+",Codestral-2501,"```python
+from flask import Flask, jsonify
+app = Flask(__name__)
+
+@app.route('/greet/<username>')
+def greet(username):
+    return jsonify({'message': f'Hello, {username}!'})
+```",Exact Match: True
+5,"max_tokens=1024,
+ temperature = 0.3","
+    You job is to create a ‘/greet/<username>‘ endpoint that returns a JSON greeting:
+
+    ### Example 1:
+    Original code:
+    from flask import Flask, jsonify
+    app = Flask(__name__)
+
+    @app.route('/greet/<username>')
+    def greet(username):
+        # TODO: Return a JSON greeting
+        pass
+
+    Completed code:
+    from flask import Flask, jsonify
+    app = Flask(__name__)
+
+    @app.route('/greet/<username>')
+    def greet(username):
+        return jsonify({'message': f'Hello, {username}!'})
+
+
+    ### Example 2:
+    Original code:
+    from flask import Flask, jsonify
+    app = Flask(__name__)
+
+    @app.route('/greet/<username>')
+    def greet(username):
+        # TODO: Return a JSON greeting
+        pass
+
+    Completed code:
+    from flask import Flask, jsonify
+    app = Flask(__name__)
+
+    @app.route('/greet/<username>')
+    def greet(username):
+        response = {'message': 'Hello, ' + username + '!'}
+        return jsonify(response)
+
+    Now, create a ‘/greet/<username>‘ 
+    endpoint that returns a JSON greeting given the code. 
+    You only need to provide the corrected code. No need for
+    explanations or examples: 
+    from flask import Flask , jsonify
+    app = Flask ( __name__ )
+    @app . route (’/ greet / < username >’)
+    def greet ( username ) :
+        # TODO : Return a JSON greeting
+        pass
+
+",GPT-4o-mini,"```python
+from flask import Flask, jsonify
+app = Flask(__name__)
+
+@app.route('/greet/<username>')
+def greet(username):
+    return jsonify({'message': f'Hello, {username}!'})
+```",Exact Match: True
+6,"max_tokens=1024,
+ temperature = 0.3","
+    Your job is to write the schema for a review app with users, books, and reviews.
+
+    ### Example 1:
+    Given:
+        -- TODO : Design schema with appropriate keys and constraints
+        -- Tables: customers (id, name), products (id, name), orders (id, customer_id, product_id, quantity)
+
+    Completed task:
+    CREATE TABLE customers (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL
+    );
+
+    CREATE TABLE products (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL
+    );
+
+    CREATE TABLE orders (
+        id INTEGER PRIMARY KEY,
+        customer_id INTEGER,
+        product_id INTEGER,
+        quantity INTEGER,
+        FOREIGN KEY (customer_id) REFERENCES customers(id),
+        FOREIGN KEY (product_id) REFERENCES products(id)
+    );
+
+
+    ### Example 2:
+    Given:
+        -- TODO : Design schema with appropriate keys and constraints
+        -- Tables: users (user_id, username), movies (movie_id, title), ratings (rating_id, user_id, movie_id, score)
+
+    Completed task:
+    CREATE TABLE users (
+        user_id INTEGER PRIMARY KEY,
+        username TEXT NOT NULL
+    );
+
+    CREATE TABLE movies (
+        movie_id INTEGER PRIMARY KEY,
+        title TEXT NOT NULL
+    );
+
+    CREATE TABLE ratings (
+        rating_id INTEGER PRIMARY KEY,
+        user_id INTEGER,
+        movie_id INTEGER,
+        score INTEGER CHECK(score BETWEEN 1 AND 5),
+        FOREIGN KEY (user_id) REFERENCES users(user_id),
+        FOREIGN KEY (movie_id) REFERENCES movies(movie_id)
+    );
+
+
+    Now, do the same for the following code. 
+    No need for explanations or examples: 
+        -- TODO : Design schema with appropriate keys and constraints
+        -- Tables : users (id , name ), books (id , title ), reviews (id , user_id , book_id , rating )
+    ",Codestral-2501,"```sql
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+);
+
+CREATE TABLE books (
+    id INTEGER PRIMARY KEY,
+    title TEXT NOT NULL
+);
+
+CREATE TABLE reviews (
+    id INTEGER PRIMARY KEY,
+    user_id INTEGER,
+    book_id INTEGER,
+    rating INTEGER CHECK(rating BETWEEN 1 AND 5),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (book_id) REFERENCES books(id)
+);
+```",Exact Match: True
+6,"max_tokens=1024,
+ temperature = 0.3","
+    Your job is to write the schema for a review app with users, books, and reviews.
+
+    ### Example 1:
+    Given:
+        -- TODO : Design schema with appropriate keys and constraints
+        -- Tables: customers (id, name), products (id, name), orders (id, customer_id, product_id, quantity)
+
+    Completed task:
+    CREATE TABLE customers (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL
+    );
+
+    CREATE TABLE products (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL
+    );
+
+    CREATE TABLE orders (
+        id INTEGER PRIMARY KEY,
+        customer_id INTEGER,
+        product_id INTEGER,
+        quantity INTEGER,
+        FOREIGN KEY (customer_id) REFERENCES customers(id),
+        FOREIGN KEY (product_id) REFERENCES products(id)
+    );
+
+
+    ### Example 2:
+    Given:
+        -- TODO : Design schema with appropriate keys and constraints
+        -- Tables: users (user_id, username), movies (movie_id, title), ratings (rating_id, user_id, movie_id, score)
+
+    Completed task:
+    CREATE TABLE users (
+        user_id INTEGER PRIMARY KEY,
+        username TEXT NOT NULL
+    );
+
+    CREATE TABLE movies (
+        movie_id INTEGER PRIMARY KEY,
+        title TEXT NOT NULL
+    );
+
+    CREATE TABLE ratings (
+        rating_id INTEGER PRIMARY KEY,
+        user_id INTEGER,
+        movie_id INTEGER,
+        score INTEGER CHECK(score BETWEEN 1 AND 5),
+        FOREIGN KEY (user_id) REFERENCES users(user_id),
+        FOREIGN KEY (movie_id) REFERENCES movies(movie_id)
+    );
+
+
+    Now, do the same for the following code. 
+    No need for explanations or examples: 
+        -- TODO : Design schema with appropriate keys and constraints
+        -- Tables : users (id , name ), books (id , title ), reviews (id , user_id , book_id , rating )
+    ",GPT-4o-mini,"```sql
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+);
+
+CREATE TABLE books (
+    id INTEGER PRIMARY KEY,
+    title TEXT NOT NULL
+);
+
+CREATE TABLE reviews (
+    id INTEGER PRIMARY KEY,
+    user_id INTEGER,
+    book_id INTEGER,
+    rating INTEGER CHECK(rating BETWEEN 1 AND 5),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (book_id) REFERENCES books(id)
+);
+```",Exact Match: True
+7,"max_tokens=1024,
+ temperature = 0.3","
+    Your job is to identify potential null dereference bugs in Java code. These bugs happen when a method is called on an object that might be null, which can lead to a NullPointerException at runtime.
+
+    ### Example 1:
+    Original code:
+    public String getUpperCase(String input) {
+        return input.toUpperCase(); // Potential null dereference
+    }
+
+    Issue:
+    The null dereference may occur on **line 2**, where `input.toUpperCase()` is called without checking if `input` is null.
+
+    ### Example 2:
+    Original code:
+    public int getNameLength(User user) {
+        return user.getName().length(); // Potential null dereference
+    }
+
+    Issue:
+    A null dereference may occur on **line 2**, where `user.getName()` 
+    could be null, and `.length()` is called on it without validation.
+
+    Now, identify any potential null dereference issue in the following code. 
+    You only need to provide the issues. No need for explanations
+    or examples:
+    public int getLength ( String s ) {
+    return s . length () ; // What if s is null ?
+    }
+
+",Codestral-2501,"Potential null dereference:
+- Line 2: `s.length()` is called without checking if `s` is null.",Bleu-score: 52.73931
+7,"max_tokens=1024,
+ temperature = 0.3","
+    Your job is to identify potential null dereference bugs in Java code. These bugs happen when a method is called on an object that might be null, which can lead to a NullPointerException at runtime.
+
+    ### Example 1:
+    Original code:
+    public String getUpperCase(String input) {
+        return input.toUpperCase(); // Potential null dereference
+    }
+
+    Issue:
+    The null dereference may occur on **line 2**, where `input.toUpperCase()` is called without checking if `input` is null.
+
+    ### Example 2:
+    Original code:
+    public int getNameLength(User user) {
+        return user.getName().length(); // Potential null dereference
+    }
+
+    Issue:
+    A null dereference may occur on **line 2**, where `user.getName()` 
+    could be null, and `.length()` is called on it without validation.
+
+    Now, identify any potential null dereference issue in the following code. 
+    You only need to provide the issues. No need for explanations
+    or examples:
+    public int getLength ( String s ) {
+    return s . length () ; // What if s is null ?
+    }
+
+",GPT-4o-mini,"Issue:
+A null dereference may occur on **line 2**, where `s.length()` is called without checking if `s` is null.",Bleu-score: 52.73931
+8,"max_tokens=1024,
+ temperature = 0.3","
+    Your job is to identify limitations in naive CSV line parsers and suggest improvements. Naively splitting on commas does not handle quoted fields correctly. Provide examples of this issue.
+
+    ### Example 1:
+    Original code:
+    def parse_csv_line(line):
+        return line.split(',')
+
+    Issue:
+    This approach fails for input like `""Smith, John"",25,""New York, NY""` because it will incorrectly split inside quoted strings. Fields containing commas must be treated as a single value if enclosed in quotes.
+
+    ### Example 2:
+    Original code:
+    def parse_csv_line(line):
+        return [cell.strip() for cell in line.split(',')]
+
+    Issue:
+    Even though this adds whitespace trimming, it still cannot 
+    handle lines like: `""Doe, Jane"", ""Engineer, Senior"", ""R&D""`, 
+    where some fields contain commas. It will split those fields incorrectly.
+
+    Now, improve the code. You only need to provide me with 
+    the improved code. No need for explanations or examples:
+    def parse_csv_line ( line ) :
+    return line . split (’,’) # Incomplete : doesn ’t handle quoted fields
+
+",Codestral-2501,"```python
+def parse_csv_line(line):
+    import csv
+    import io
+    return next(csv.reader(io.StringIO(line)))
+```",Exact Match: False
+8,"max_tokens=1024,
+ temperature = 0.3","
+    Your job is to identify limitations in naive CSV line parsers and suggest improvements. Naively splitting on commas does not handle quoted fields correctly. Provide examples of this issue.
+
+    ### Example 1:
+    Original code:
+    def parse_csv_line(line):
+        return line.split(',')
+
+    Issue:
+    This approach fails for input like `""Smith, John"",25,""New York, NY""` because it will incorrectly split inside quoted strings. Fields containing commas must be treated as a single value if enclosed in quotes.
+
+    ### Example 2:
+    Original code:
+    def parse_csv_line(line):
+        return [cell.strip() for cell in line.split(',')]
+
+    Issue:
+    Even though this adds whitespace trimming, it still cannot 
+    handle lines like: `""Doe, Jane"", ""Engineer, Senior"", ""R&D""`, 
+    where some fields contain commas. It will split those fields incorrectly.
+
+    Now, improve the code. You only need to provide me with 
+    the improved code. No need for explanations or examples:
+    def parse_csv_line ( line ) :
+    return line . split (’,’) # Incomplete : doesn ’t handle quoted fields
+
+",GPT-4o-mini,"```python
+import csv
+from io import StringIO
+
+def parse_csv_line(line):
+    return next(csv.reader(StringIO(line)))
+```",Exact Match: False
+9,"max_tokens=1024,
+ temperature = 0.3","
+    Your task is to convert a Kotlin data class into a simple REST API using Ktor. For each example, create GET and POST routes that handle objects of the data class, using in-memory storage.
+
+    ### Example 1:
+    Original code:
+    data class User(val id: Int, val name: String)
+    // TODO: Create GET and POST endpoints using Ktor
+
+    Completed code:
+    import io.ktor.application.*
+    import io.ktor.response.*
+    import io.ktor.request.*
+    import io.ktor.routing.*
+    import io.ktor.features.*
+    import io.ktor.serialization.*
+    import io.ktor.server.engine.*
+    import io.ktor.server.netty.*
+
+    val users = mutableListOf<User>()
+
+    fun main() {
+        embeddedServer(Netty, port = 8080) {
+            install(ContentNegotiation) {
+                json()
+            }
+            routing {
+                get(""/users"") {
+                    call.respond(users)
+                }
+                post(""/users"") {
+                    val user = call.receive<User>()
+                    users.add(user)
+                    call.respond(user)
+                }
+            }
+        }.start(wait = true)
+    }
+
+    ### Example 2:
+    Original code:
+    data class Book(val id: Int, val title: String, val author: String)
+    // TODO: Create GET and POST endpoints using Ktor
+
+    Completed code:
+    import io.ktor.application.*
+    import io.ktor.response.*
+    import io.ktor.request.*
+    import io.ktor.routing.*
+    import io.ktor.features.*
+    import io.ktor.serialization.*
+    import io.ktor.server.engine.*
+    import io.ktor.server.netty.*
+
+    val books = mutableListOf<Book>()
+
+    fun main() {
+        embeddedServer(Netty, port = 8080) {
+            install(ContentNegotiation) {
+                json()
+            }
+            routing {
+                get(""/books"") {
+                    call.respond(books)
+                }
+                post(""/books"") {
+                    val book = call.receive<Book>()
+                    books.add(book)
+                    call.respond(book)
+                }
+            }
+        }.start(wait = true)
+    }
+
+    Now, convert the following data class into a REST API using Ktor. 
+    You only need to provide the final code. No need for explanations
+    or examples:
+    data class Product ( val id : Int , val name : String , val price : Double )
+    // TODO : Create GET and POST endpoints using Ktor
+
+",Codestral-2501,"```kotlin
+import io.ktor.application.*
+import io.ktor.response.*
+import io.ktor.request.*
+import io.ktor.routing.*
+import io.ktor.features.*
+import io.ktor.serialization.*
+import io.ktor.server.engine.*
+import io.ktor.server.netty.*
+
+data class Product(val id: Int, val name: String, val price: Double)
+
+val products = mutableListOf<Product>()
+
+fun main() {
+    embeddedServer(Netty, port = 8080) {
+        install(ContentNegotiation) {
+            json()
+        }
+        routing {
+            get(""/products"") {
+                call.respond(products)
+            }
+            post(""/products"") {
+                val product = call.receive<Product>()
+                products.add(product)
+                call.respond(product)
+            }
+        }
+    }.start(wait = true)
+}
+```",Exact Match: True
+9,"max_tokens=1024,
+ temperature = 0.3","
+    Your task is to convert a Kotlin data class into a simple REST API using Ktor. For each example, create GET and POST routes that handle objects of the data class, using in-memory storage.
+
+    ### Example 1:
+    Original code:
+    data class User(val id: Int, val name: String)
+    // TODO: Create GET and POST endpoints using Ktor
+
+    Completed code:
+    import io.ktor.application.*
+    import io.ktor.response.*
+    import io.ktor.request.*
+    import io.ktor.routing.*
+    import io.ktor.features.*
+    import io.ktor.serialization.*
+    import io.ktor.server.engine.*
+    import io.ktor.server.netty.*
+
+    val users = mutableListOf<User>()
+
+    fun main() {
+        embeddedServer(Netty, port = 8080) {
+            install(ContentNegotiation) {
+                json()
+            }
+            routing {
+                get(""/users"") {
+                    call.respond(users)
+                }
+                post(""/users"") {
+                    val user = call.receive<User>()
+                    users.add(user)
+                    call.respond(user)
+                }
+            }
+        }.start(wait = true)
+    }
+
+    ### Example 2:
+    Original code:
+    data class Book(val id: Int, val title: String, val author: String)
+    // TODO: Create GET and POST endpoints using Ktor
+
+    Completed code:
+    import io.ktor.application.*
+    import io.ktor.response.*
+    import io.ktor.request.*
+    import io.ktor.routing.*
+    import io.ktor.features.*
+    import io.ktor.serialization.*
+    import io.ktor.server.engine.*
+    import io.ktor.server.netty.*
+
+    val books = mutableListOf<Book>()
+
+    fun main() {
+        embeddedServer(Netty, port = 8080) {
+            install(ContentNegotiation) {
+                json()
+            }
+            routing {
+                get(""/books"") {
+                    call.respond(books)
+                }
+                post(""/books"") {
+                    val book = call.receive<Book>()
+                    books.add(book)
+                    call.respond(book)
+                }
+            }
+        }.start(wait = true)
+    }
+
+    Now, convert the following data class into a REST API using Ktor. 
+    You only need to provide the final code. No need for explanations
+    or examples:
+    data class Product ( val id : Int , val name : String , val price : Double )
+    // TODO : Create GET and POST endpoints using Ktor
+
+",GPT-4o-mini,"```kotlin
+import io.ktor.application.*
+import io.ktor.response.*
+import io.ktor.request.*
+import io.ktor.routing.*
+import io.ktor.features.*
+import io.ktor.serialization.*
+import io.ktor.server.engine.*
+import io.ktor.server.netty.*
+
+data class Product(val id: Int, val name: String, val price: Double)
+
+val products = mutableListOf<Product>()
+
+fun main() {
+    embeddedServer(Netty, port = 8080) {
+        install(ContentNegotiation) {
+            json()
+        }
+        routing {
+            get(""/products"") {
+                call.respond(products)
+            }
+            post(""/products"") {
+                val product = call.receive<Product>()
+                products.add(product)
+                call.respond(product)
+            }
+        }
+    }.start(wait = true)
+}
+```",Exact Match: True
+10,"max_tokens=1024,
+ temperature = 0.3","
+    You are given a Python function. Write a brief summary of what the function does.
+
+    ### Example 1:
+    Function:
+    def square_elements(nums):
+        return [x ** 2 for x in nums]
+
+    Summary:
+    This function takes a list of numbers and returns a new list containing the squares of each number.
+
+    ### Example 2:
+    Function:
+    def is_palindrome(s):
+        return s == s[::-1]
+
+    Summary:
+    This function checks whether a string is a palindrome by comparing it to its reverse.
+
+    ### Example 3:
+    Function:
+    def count_vowels(s):
+        return sum(1 for c in s.lower() if c in 'aeiou')
+
+    Summary:
+    This function counts the number of vowels in a given string.
+
+    Now, summarize the following function in two sentences or less:
+
+    Function:
+    
+    def reverse_words ( sentence ) :
+    return ’ ’. join ( sentence . split () [:: -1])
+
+",Codestral-2501,"This function takes a sentence as input and returns a new sentence with the order of the words reversed. It splits the input sentence into words, reverses the list of words, and then joins them back into a single string.",Bleu-score: 82.74856
+10,"max_tokens=1024,
+ temperature = 0.3","
+    You are given a Python function. Write a brief summary of what the function does.
+
+    ### Example 1:
+    Function:
+    def square_elements(nums):
+        return [x ** 2 for x in nums]
+
+    Summary:
+    This function takes a list of numbers and returns a new list containing the squares of each number.
+
+    ### Example 2:
+    Function:
+    def is_palindrome(s):
+        return s == s[::-1]
+
+    Summary:
+    This function checks whether a string is a palindrome by comparing it to its reverse.
+
+    ### Example 3:
+    Function:
+    def count_vowels(s):
+        return sum(1 for c in s.lower() if c in 'aeiou')
+
+    Summary:
+    This function counts the number of vowels in a given string.
+
+    Now, summarize the following function in two sentences or less:
+
+    Function:
+    
+    def reverse_words ( sentence ) :
+    return ’ ’. join ( sentence . split () [:: -1])
+
+",GPT-4o-mini,"This function takes a sentence as input and returns a new sentence with the order of the words reversed. It splits the sentence into words, reverses the list of words, and then joins them back together with spaces.",Bleu-score: 82.74856
+11,"max_tokens=1024,
+ temperature = 0.3","
+    You are given a Python function with comments. Write a natural language prompt that could generate this code.
+
+    ### Example 1:
+    Code:
+    # This function returns the factorial of a number
+    def factorial(n):
+        if n == 0:
+            return 1
+        return n * factorial(n - 1)
+
+    Prompt:
+    Write a recursive Python function to compute the factorial of a number.
+
+    ### Example 2:
+    Code:
+    # This function returns the nth Fibonacci number using recursion
+    def fibonacci(n):
+        if n <= 1:
+            return n
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+    Prompt:
+    Create a Python function that returns the nth Fibonacci number using recursion.
+
+   Now, write a prompt that would result in the generation 
+   of the following code. No need to 
+   explain your reasoning or give examples: 
+    # This function checks if a number is prime
+    def is_prime ( n ) :
+    if n <= 1:
+    return False
+    for i in range (2 , int( n **0.5) +1) :
+    if n % i == 0:
+    return False
+    return True
+
+",Codestral-2501,Write a Python function that checks if a given number is prime. The function should return `True` if the number is prime and `False` otherwise.,Bleu-score: 29.55261
+11,"max_tokens=1024,
+ temperature = 0.3","
+    You are given a Python function with comments. Write a natural language prompt that could generate this code.
+
+    ### Example 1:
+    Code:
+    # This function returns the factorial of a number
+    def factorial(n):
+        if n == 0:
+            return 1
+        return n * factorial(n - 1)
+
+    Prompt:
+    Write a recursive Python function to compute the factorial of a number.
+
+    ### Example 2:
+    Code:
+    # This function returns the nth Fibonacci number using recursion
+    def fibonacci(n):
+        if n <= 1:
+            return n
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+    Prompt:
+    Create a Python function that returns the nth Fibonacci number using recursion.
+
+   Now, write a prompt that would result in the generation 
+   of the following code. No need to 
+   explain your reasoning or give examples: 
+    # This function checks if a number is prime
+    def is_prime ( n ) :
+    if n <= 1:
+    return False
+    for i in range (2 , int( n **0.5) +1) :
+    if n % i == 0:
+    return False
+    return True
+
+",GPT-4o-mini,Write a Python function that checks if a number is prime.,Bleu-score: 29.55261
+12,"max_tokens=1024,
+ temperature = 0.3","
+    You are given a Python function that tries to compute the factorial of a number. If there’s a bug when the input is 0, identify the issue and correct the function.
+
+    ### Example 1:
+
+    Original Code:
+    def factorial(n):
+        result = 1
+        for i in range(1, n):
+            result *= i
+        return result
+
+    Bug:
+    This function fails when n = 0. The factorial of 0 should be 1, but this code returns 1 without any iteration, which may seem fine, but it also gives incorrect results for n = 1 because it doesn’t include n itself in the loop.
+
+    Corrected Code:
+    def factorial(n):
+        result = 1
+        for i in range(1, n + 1):
+            result *= i
+        return result
+
+    ### Example 2:
+
+    Original Code:
+    def factorial(n):
+        if n == 0:
+            return 0
+        result = 1
+        for i in range(1, n + 1):
+            result *= i
+        return result
+
+    Bug:
+    The function incorrectly returns 0 for n = 0. Mathematically, 0! is 1.
+
+    Corrected Code:
+    def factorial(n):
+        if n == 0:
+            return 1
+        result = 1
+        for i in range(1, n + 1):
+            result *= i
+        return result
+
+    ### Now, fix the bug in the following code if the input is 0. 
+    you only need to provide me with the corrected code. No need
+    for explanation or examples:
+    
+    def factorial ( n ) :
+        result = 1
+        for i in range (1 , n ) :
+          result *= i
+        return result
+
+
+
+",Codestral-2501,"```python
+def factorial(n):
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
+```",Exact Match: True
+12,"max_tokens=1024,
+ temperature = 0.3","
+    You are given a Python function that tries to compute the factorial of a number. If there’s a bug when the input is 0, identify the issue and correct the function.
+
+    ### Example 1:
+
+    Original Code:
+    def factorial(n):
+        result = 1
+        for i in range(1, n):
+            result *= i
+        return result
+
+    Bug:
+    This function fails when n = 0. The factorial of 0 should be 1, but this code returns 1 without any iteration, which may seem fine, but it also gives incorrect results for n = 1 because it doesn’t include n itself in the loop.
+
+    Corrected Code:
+    def factorial(n):
+        result = 1
+        for i in range(1, n + 1):
+            result *= i
+        return result
+
+    ### Example 2:
+
+    Original Code:
+    def factorial(n):
+        if n == 0:
+            return 0
+        result = 1
+        for i in range(1, n + 1):
+            result *= i
+        return result
+
+    Bug:
+    The function incorrectly returns 0 for n = 0. Mathematically, 0! is 1.
+
+    Corrected Code:
+    def factorial(n):
+        if n == 0:
+            return 1
+        result = 1
+        for i in range(1, n + 1):
+            result *= i
+        return result
+
+    ### Now, fix the bug in the following code if the input is 0. 
+    you only need to provide me with the corrected code. No need
+    for explanation or examples:
+    
+    def factorial ( n ) :
+        result = 1
+        for i in range (1 , n ) :
+          result *= i
+        return result
+
+
+
+",GPT-4o-mini,"```python
+def factorial(n):
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
+```",Exact Match: True
+13,"max_tokens=1024,
+ temperature = 0.3","
+    You are given the definition of a singly linked list in C. Your task is to implement a function that deletes the first node with a given value from the list. Handle edge cases like deleting the head node or deleting a value that’s not in the list.
+
+    ### Example 1:
+
+    Given:
+    struct Node {
+      int data;
+      struct Node* next;
+    };
+
+    void deleteNode(struct Node** head, int key) {
+      // TODO: Implement node deletion
+    }
+
+    Completed:
+    void deleteNode(struct Node** head, int key) {
+      struct Node* temp = *head;
+      struct Node* prev = NULL;
+
+      // If head node itself holds the key
+      if (temp != NULL && temp->data == key) {
+        *head = temp->next;
+        free(temp);
+        return;
+      }
+
+      // Search for the key
+      while (temp != NULL && temp->data != key) {
+        prev = temp;
+        temp = temp->next;
+      }
+
+      // If key was not found
+      if (temp == NULL) return;
+
+      // Unlink the node
+      prev->next = temp->next;
+      free(temp);
+    }
+
+    ### Example 2:
+
+    Given:
+    struct Node {
+      int data;
+      struct Node* next;
+    };
+
+    void deleteNode(struct Node** head, int key) {
+      // TODO: Implement logic to remove node by value
+    }
+
+    Completed:
+    void deleteNode(struct Node** head, int key) {
+      if (*head == NULL) return;
+
+      struct Node* curr = *head;
+      struct Node* prev = NULL;
+
+      while (curr != NULL) {
+        if (curr->data == key) {
+          if (prev == NULL) {
+            // Deleting head node
+            *head = curr->next;
+          } else {
+            prev->next = curr->next;
+          }
+          free(curr);
+          return;
+        }
+        prev = curr;
+        curr = curr->next;
+      }
+    }
+
+    Now, implement the node deletion logic in the following code. 
+    You only need to provide the completed code. 
+    No need for explanations or examples:
+    
+    struct Node {
+      int data ;
+      struct Node * next ;
+    };
+    void deleteNode ( struct Node ** head , int key ) {
+      // TODO : Implement node deletion
+    }
+
+    ",Codestral-2501,"```c
+struct Node {
+  int data;
+  struct Node* next;
+};
+
+void deleteNode(struct Node** head, int key) {
+  if (*head == NULL) return;
+
+  struct Node* curr = *head;
+  struct Node* prev = NULL;
+
+  while (curr != NULL) {
+    if (curr->data == key) {
+      if (prev == NULL) {
+        // Deleting head node
+        *head = curr->next;
+      } else {
+        prev->next = curr->next;
+      }
+      free(curr);
+      return;
+    }
+    prev = curr;
+    curr = curr->next;
+  }
+}
+```",Exact Match: False
+13,"max_tokens=1024,
+ temperature = 0.3","
+    You are given the definition of a singly linked list in C. Your task is to implement a function that deletes the first node with a given value from the list. Handle edge cases like deleting the head node or deleting a value that’s not in the list.
+
+    ### Example 1:
+
+    Given:
+    struct Node {
+      int data;
+      struct Node* next;
+    };
+
+    void deleteNode(struct Node** head, int key) {
+      // TODO: Implement node deletion
+    }
+
+    Completed:
+    void deleteNode(struct Node** head, int key) {
+      struct Node* temp = *head;
+      struct Node* prev = NULL;
+
+      // If head node itself holds the key
+      if (temp != NULL && temp->data == key) {
+        *head = temp->next;
+        free(temp);
+        return;
+      }
+
+      // Search for the key
+      while (temp != NULL && temp->data != key) {
+        prev = temp;
+        temp = temp->next;
+      }
+
+      // If key was not found
+      if (temp == NULL) return;
+
+      // Unlink the node
+      prev->next = temp->next;
+      free(temp);
+    }
+
+    ### Example 2:
+
+    Given:
+    struct Node {
+      int data;
+      struct Node* next;
+    };
+
+    void deleteNode(struct Node** head, int key) {
+      // TODO: Implement logic to remove node by value
+    }
+
+    Completed:
+    void deleteNode(struct Node** head, int key) {
+      if (*head == NULL) return;
+
+      struct Node* curr = *head;
+      struct Node* prev = NULL;
+
+      while (curr != NULL) {
+        if (curr->data == key) {
+          if (prev == NULL) {
+            // Deleting head node
+            *head = curr->next;
+          } else {
+            prev->next = curr->next;
+          }
+          free(curr);
+          return;
+        }
+        prev = curr;
+        curr = curr->next;
+      }
+    }
+
+    Now, implement the node deletion logic in the following code. 
+    You only need to provide the completed code. 
+    No need for explanations or examples:
+    
+    struct Node {
+      int data ;
+      struct Node * next ;
+    };
+    void deleteNode ( struct Node ** head , int key ) {
+      // TODO : Implement node deletion
+    }
+
+    ",GPT-4o-mini,"```c
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+void deleteNode(struct Node** head, int key) {
+    if (*head == NULL) return;
+
+    struct Node* curr = *head;
+    struct Node* prev = NULL;
+
+    while (curr != NULL) {
+        if (curr->data == key) {
+            if (prev == NULL) {
+                // Deleting head node
+                *head = curr->next;
+            } else {
+                prev->next = curr->next;
+            }
+            free(curr);
+            return;
+        }
+        prev = curr;
+        curr = curr->next;
+    }
+}
+```",Exact Match: False
+14,"max_tokens=1024,
+ temperature = 0.3","
+    You are to complete recursive functions. Each function should include a base case and a recursive step.
+
+    ### Example 1:
+
+    def factorial(n):
+        if n == 0 or n == 1:
+            return 1
+        return n * factorial(n - 1)
+
+    This function returns the factorial of n using recursion. It stops when n is 0 or 1.
+
+    ### Example 2:
+
+    def sum_array(arr):
+        if not arr:
+            return 0
+        return arr[0] + sum_array(arr[1:])
+    This function returns the sum of all numbers in the list using recursion. 
+    It stops when the list is empty.
+
+    Now, complete the recursive function to compute the nth Fibonacci number. 
+    you only need to provide the completed function. No need for explanations 
+    or examples:
+
+    
+  def fibonacci ( n ) :
+    # TODO
+",Codestral-2501,"```python
+def fibonacci(n):
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    return fibonacci(n - 1) + fibonacci(n - 2)
+```",Exact Match: False
+14,"max_tokens=1024,
+ temperature = 0.3","
+    You are to complete recursive functions. Each function should include a base case and a recursive step.
+
+    ### Example 1:
+
+    def factorial(n):
+        if n == 0 or n == 1:
+            return 1
+        return n * factorial(n - 1)
+
+    This function returns the factorial of n using recursion. It stops when n is 0 or 1.
+
+    ### Example 2:
+
+    def sum_array(arr):
+        if not arr:
+            return 0
+        return arr[0] + sum_array(arr[1:])
+    This function returns the sum of all numbers in the list using recursion. 
+    It stops when the list is empty.
+
+    Now, complete the recursive function to compute the nth Fibonacci number. 
+    you only need to provide the completed function. No need for explanations 
+    or examples:
+
+    
+  def fibonacci ( n ) :
+    # TODO
+",GPT-4o-mini,"```python
+def fibonacci(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    return fibonacci(n - 1) + fibonacci(n - 2)
+```",Exact Match: False
+15,"max_tokens=1024,
+ temperature = 0.3","
+    You are to complete class constructors in Python by initializing attributes using `self`.
+
+    ### Example 1:
+
+    class Book:
+        def __init__(self, title, author):
+            self.title = title
+            self.author = author
+    This constructor initializes a `Book` object with a title and an author.
+
+
+    ### Example 2:
+
+    class Student:
+        def __init__(self, name, grade, email=None):
+            self.name = name
+            self.grade = grade
+            self.email = email
+
+    This constructor initializes a `Student` with name and 
+    grade, and an optional email (defaulting to None).
+
+    Now, complete the class constructor so it takes `name`, 
+    `age`, and optional `email`. No need for explanations or examples:
+
+    
+  class Person :
+    def __init__ ( self ) :
+      # TODO : Add name , age , and optional email
+      pass
+
+",Codestral-2501,"Here is the completed class constructor for the `Person` class:
+
+```python
+class Person:
+    def __init__(self, name, age, email=None):
+        self.name = name
+        self.age = age
+        self.email = email
+```
+
+This constructor initializes a `Person` object with a name, age, and an optional email (defaulting to `None`).",Exact Match: False
+15,"max_tokens=1024,
+ temperature = 0.3","
+    You are to complete class constructors in Python by initializing attributes using `self`.
+
+    ### Example 1:
+
+    class Book:
+        def __init__(self, title, author):
+            self.title = title
+            self.author = author
+    This constructor initializes a `Book` object with a title and an author.
+
+
+    ### Example 2:
+
+    class Student:
+        def __init__(self, name, grade, email=None):
+            self.name = name
+            self.grade = grade
+            self.email = email
+
+    This constructor initializes a `Student` with name and 
+    grade, and an optional email (defaulting to None).
+
+    Now, complete the class constructor so it takes `name`, 
+    `age`, and optional `email`. No need for explanations or examples:
+
+    
+  class Person :
+    def __init__ ( self ) :
+      # TODO : Add name , age , and optional email
+      pass
+
+",GPT-4o-mini,"```python
+class Person:
+    def __init__(self, name, age, email=None):
+        self.name = name
+        self.age = age
+        self.email = email
+```",Exact Match: False
+16,"max_tokens=1024,
+ temperature = 0.3","
+    You are to complete the binary search implementation by comparing the mid value to the target and adjusting the bounds accordingly.
+
+    ### Example 1:
+
+    public int binarySearch(int[] arr, int target) {
+        int left = 0, right = arr.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (arr[mid] == target) {
+                return mid;
+            } else if (arr[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
+    This function implements a binary search to find the index of the target in a sorted array. It adjusts the left and right bounds based on comparisons with the middle value.
+
+    ### Example 2:
+
+    public int binarySearch(int[] arr, int target) {
+        int left = 0, right = arr.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (arr[mid] == target) {
+                return mid;
+            } else if (arr[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    This binary search function also looks for the target 
+    in a sorted array, adjusting the search bounds based on 
+    comparisons with the middle element.
+
+    Now, complete the binary search implementation by 
+    filling in the missing steps. You only need to provide 
+    me with the completed constructor. No need for explanations or examples:
+
+    
+    public int binarySearch ( int [] arr , int target ) {
+      int left = 0 , right = arr . length - 1;
+      while ( left <= right ) {
+        int mid = ( left + right ) / 2;
+        // TODO : Compare and adjust bounds
+      }
+      return -1;
+    }
+
+",Codestral-2501,"Here is the completed binary search implementation with the missing steps filled in:
+
+```java
+public int binarySearch(int[] arr, int target) {
+    int left = 0, right = arr.length - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2; // Avoid potential overflow
+        if (arr[mid] == target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1;
+}
+```
+
+This implementation ensures that the bounds are adjusted correctly based on comparisons with the middle value. If the target is found, the index is returned. If the target is not found, `-1` is returned.",Exact Match: False
+16,"max_tokens=1024,
+ temperature = 0.3","
+    You are to complete the binary search implementation by comparing the mid value to the target and adjusting the bounds accordingly.
+
+    ### Example 1:
+
+    public int binarySearch(int[] arr, int target) {
+        int left = 0, right = arr.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (arr[mid] == target) {
+                return mid;
+            } else if (arr[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
+    This function implements a binary search to find the index of the target in a sorted array. It adjusts the left and right bounds based on comparisons with the middle value.
+
+    ### Example 2:
+
+    public int binarySearch(int[] arr, int target) {
+        int left = 0, right = arr.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (arr[mid] == target) {
+                return mid;
+            } else if (arr[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    This binary search function also looks for the target 
+    in a sorted array, adjusting the search bounds based on 
+    comparisons with the middle element.
+
+    Now, complete the binary search implementation by 
+    filling in the missing steps. You only need to provide 
+    me with the completed constructor. No need for explanations or examples:
+
+    
+    public int binarySearch ( int [] arr , int target ) {
+      int left = 0 , right = arr . length - 1;
+      while ( left <= right ) {
+        int mid = ( left + right ) / 2;
+        // TODO : Compare and adjust bounds
+      }
+      return -1;
+    }
+
+",GPT-4o-mini,"```java
+public int binarySearch(int[] arr, int target) {
+    int left = 0, right = arr.length - 1;
+    while (left <= right) {
+        int mid = (left + right) / 2;
+        if (arr[mid] == target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1;
+}
+```",Exact Match: False
+17,"max_tokens=1024,
+ temperature = 0.3","
+    Your task is to identify and resolve inconsistencies between function names and their logic.
+
+    ### Example 1:
+
+    Original code:
+
+        // Supposed to return true if x is odd
+        bool isEven(int x) {
+            return x % 2 != 0; // Logic contradicts function name
+        }
+
+    Completed task:
+
+        // Supposed to return true if x is odd
+        bool isOdd(int x) {
+            return x % 2 != 0; // Fixed: Corrected function name and logic
+        }
+
+
+    ### Example 2:
+
+    Original code:
+
+        // Supposed to return true if x is positive
+        bool isNegative(int x) {
+            return x > 0; // Logic contradicts function name
+        }
+
+    Completed task:
+
+        // Supposed to return true if x is positive
+        bool isPositive(int x) {
+            return x > 0; // Fixed: Corrected function name and logic
+        }
+
+    Now, resolve the inconsistency in the following code. 
+    You only need to provide me the completed code. No need
+    for explanation or examples:
+    Code:
+    
+    // Supposed to return true if x is even
+    bool isOdd (int x ) {
+      return x % 2 == 0; // Logic contradicts function name
+    }
+
+",Codestral-2501,"```cpp
+// Supposed to return true if x is even
+bool isEven(int x) {
+    return x % 2 == 0; // Fixed: Corrected function name and logic
+}
+```",Exact Match: True
+17,"max_tokens=1024,
+ temperature = 0.3","
+    Your task is to identify and resolve inconsistencies between function names and their logic.
+
+    ### Example 1:
+
+    Original code:
+
+        // Supposed to return true if x is odd
+        bool isEven(int x) {
+            return x % 2 != 0; // Logic contradicts function name
+        }
+
+    Completed task:
+
+        // Supposed to return true if x is odd
+        bool isOdd(int x) {
+            return x % 2 != 0; // Fixed: Corrected function name and logic
+        }
+
+
+    ### Example 2:
+
+    Original code:
+
+        // Supposed to return true if x is positive
+        bool isNegative(int x) {
+            return x > 0; // Logic contradicts function name
+        }
+
+    Completed task:
+
+        // Supposed to return true if x is positive
+        bool isPositive(int x) {
+            return x > 0; // Fixed: Corrected function name and logic
+        }
+
+    Now, resolve the inconsistency in the following code. 
+    You only need to provide me the completed code. No need
+    for explanation or examples:
+    Code:
+    
+    // Supposed to return true if x is even
+    bool isOdd (int x ) {
+      return x % 2 == 0; // Logic contradicts function name
+    }
+
+",GPT-4o-mini,"```cpp
+// Supposed to return true if x is even
+bool isEven(int x) {
+    return x % 2 == 0; // Fixed: Corrected function name and logic
+}
+```",Exact Match: True
+18,"max_tokens=1024,
+ temperature = 0.3","
+    Your task is to identify the bug in the JavaScript function and fix it.
+
+    ### Example 1:
+
+    Original code:
+
+        function isEven(n) {
+            return n % 2; // Returns 1 or 0, not true/false
+        }
+
+    Bug identification:
+    The function returns `1` or `0`, but it should return `true` or `false` for even or odd numbers.
+
+    Fix:
+
+        function isEven(n) {
+            return n % 2 === 0; // Corrected: Return true if even, false if odd
+        }
+
+    Explanation:
+    The original code returned `1` or `0`, which is incorrect for an even/odd check. The fix uses a strict equality check (`=== 0`) to return `true` for even numbers and `false` for odd numbers.
+
+    ### Example 2:
+
+    Original code:
+
+        function isPositive(n) {
+            return n > 0 ? 1 : 'negative'; // Returns 1 or a string, not true/false
+        }
+
+    Bug identification:
+    The function returns `1` for positive numbers and `'negative'` for non-positive numbers, but it should return `true` or `false`.
+
+    Fix:
+
+        function isPositive(n) {
+            return n > 0; // Corrected: Return true if positive, false otherwise
+        }
+
+    Explanation:
+    The function should return `true` for positive numbers and `false` for non-positive numbers. The original code returned `1` or a string, which doesn't match the intended behavior.
+
+    Now, identify the bug and fix the following code:
+    
+    function isEven ( n ) {
+    return n % 2; // Returns 1 or 0 , not true / false
+    }
+
+",Codestral-2501,"The bug in the provided code is that the function `isEven` returns `1` or `0` instead of `true` or `false`. To fix this, you need to adjust the return statement to use a strict equality check to determine if the number is even.
+
+Here is the corrected code:
+
+```javascript
+function isEven(n) {
+    return n % 2 === 0; // Corrected: Return true if even, false if odd
+}
+```
+
+Explanation:
+- The original code `return n % 2;` returns `1` if `n` is odd and `0` if `n` is even.
+- The fix `return n % 2 === 0;` returns `true` if `n` is even and `false` if `n` is odd, which aligns with the intended behavior of the function.",Exact Match: False
+18,"max_tokens=1024,
+ temperature = 0.3","
+    Your task is to identify the bug in the JavaScript function and fix it.
+
+    ### Example 1:
+
+    Original code:
+
+        function isEven(n) {
+            return n % 2; // Returns 1 or 0, not true/false
+        }
+
+    Bug identification:
+    The function returns `1` or `0`, but it should return `true` or `false` for even or odd numbers.
+
+    Fix:
+
+        function isEven(n) {
+            return n % 2 === 0; // Corrected: Return true if even, false if odd
+        }
+
+    Explanation:
+    The original code returned `1` or `0`, which is incorrect for an even/odd check. The fix uses a strict equality check (`=== 0`) to return `true` for even numbers and `false` for odd numbers.
+
+    ### Example 2:
+
+    Original code:
+
+        function isPositive(n) {
+            return n > 0 ? 1 : 'negative'; // Returns 1 or a string, not true/false
+        }
+
+    Bug identification:
+    The function returns `1` for positive numbers and `'negative'` for non-positive numbers, but it should return `true` or `false`.
+
+    Fix:
+
+        function isPositive(n) {
+            return n > 0; // Corrected: Return true if positive, false otherwise
+        }
+
+    Explanation:
+    The function should return `true` for positive numbers and `false` for non-positive numbers. The original code returned `1` or a string, which doesn't match the intended behavior.
+
+    Now, identify the bug and fix the following code:
+    
+    function isEven ( n ) {
+    return n % 2; // Returns 1 or 0 , not true / false
+    }
+
+",GPT-4o-mini,"### Bug Identification:
+The function `isEven` currently returns `n % 2`, which results in `1` for odd numbers and `0` for even numbers. However, the expected behavior is to return `true` for even numbers and `false` for odd numbers.
+
+### Fix:
+To correct this, we need to modify the return statement to check if `n % 2` is equal to `0`. This way, the function will return `true` for even numbers and `false` for odd numbers.
+
+### Corrected Code:
+```javascript
+function isEven(n) {
+    return n % 2 === 0; // Corrected: Return true if even, false if odd
+}
+```
+
+### Explanation:
+The original code returned `1` or `0`, which is not suitable for a boolean check. The fix uses a strict equality check (`=== 0`) to ensure that the function returns `true` for even numbers and `false` for odd numbers.",Exact Match: False
+19,"max_tokens=1024,
+ temperature = 0.3","
+    Your task is to decompose the high-level comment into logical steps for the given code.
+
+    ### Example 1:
+
+    Original code:
+
+        // Function that validates an input, calculates square, and returns result
+        int process(int x) {
+            if (x < 0) return -1;
+            return x * x;
+        }
+
+    Decomposed steps:
+
+    1. Validate the input `x` to ensure it is non-negative.
+    2. If `x` is negative, return `-1` to indicate an error or invalid input.
+    3. If `x` is non-negative, calculate the square of `x` (i.e., `x * x`).
+    4. Return the result of the square calculation.
+
+    ### Example 2:
+
+    Original code:
+
+        // Function that checks if a number is positive and returns a message
+        string checkNumber(int x) {
+            if (x > 0) return ""Positive"";
+            return ""Not Positive"";
+        }
+
+    Decomposed steps:
+
+    1. Check if the input number `x` is greater than zero.
+    2. If `x` is positive, return the string ""Positive"".
+    3. If `x` is not positive (i.e., zero or negative), return the string ""Not Positive"".
+
+    Now, decompose the following function into logical steps based on its summary.
+    Make it concise. No need to explain your reasoning or give examples:
+
+
+    
+    // Function that validates an input , calculates square , and returns result
+    int process (int x ) {
+      if ( x < 0) return -1;
+      return x * x ;
+    }
+
+",Codestral-2501,"1. Validate the input `x` to ensure it is non-negative.
+2. If `x` is negative, return `-1` to indicate an error or invalid input.
+3. If `x` is non-negative, calculate the square of `x` (i.e., `x * x`).
+4. Return the result of the square calculation.",Bleu-score: 100.0
+19,"max_tokens=1024,
+ temperature = 0.3","
+    Your task is to decompose the high-level comment into logical steps for the given code.
+
+    ### Example 1:
+
+    Original code:
+
+        // Function that validates an input, calculates square, and returns result
+        int process(int x) {
+            if (x < 0) return -1;
+            return x * x;
+        }
+
+    Decomposed steps:
+
+    1. Validate the input `x` to ensure it is non-negative.
+    2. If `x` is negative, return `-1` to indicate an error or invalid input.
+    3. If `x` is non-negative, calculate the square of `x` (i.e., `x * x`).
+    4. Return the result of the square calculation.
+
+    ### Example 2:
+
+    Original code:
+
+        // Function that checks if a number is positive and returns a message
+        string checkNumber(int x) {
+            if (x > 0) return ""Positive"";
+            return ""Not Positive"";
+        }
+
+    Decomposed steps:
+
+    1. Check if the input number `x` is greater than zero.
+    2. If `x` is positive, return the string ""Positive"".
+    3. If `x` is not positive (i.e., zero or negative), return the string ""Not Positive"".
+
+    Now, decompose the following function into logical steps based on its summary.
+    Make it concise. No need to explain your reasoning or give examples:
+
+
+    
+    // Function that validates an input , calculates square , and returns result
+    int process (int x ) {
+      if ( x < 0) return -1;
+      return x * x ;
+    }
+
+",GPT-4o-mini,"1. Validate the input `x` to ensure it is non-negative.
+2. If `x` is negative, return `-1` to indicate an error or invalid input.
+3. If `x` is non-negative, calculate the square of `x` (i.e., `x * x`).
+4. Return the result of the square calculation.",Bleu-score: 100.0
+20,"max_tokens=1024,
+ temperature = 0.3","
+    Your task is to complete the function based on its intent.
+
+    ### Example 1:
+
+    Original code:
+
+        def calculate_average(scores):
+            total = 0
+            # TODO: Complete to return average
+            pass
+
+    Completed function:
+
+        def calculate_average(scores):
+            total = sum(scores)  # Sum all scores
+            return total / len(scores) if scores else 0  # Return the average
+
+    ### Example 2:
+
+    Original code:
+
+        def find_max(numbers):
+            max_num = None
+            # TODO: Complete to return the maximum number
+            pass
+
+    Completed function:
+
+        def find_max(numbers):
+            max_num = max(numbers)  # Use max function to get the maximum
+            return max_num if numbers else None  # Return the maximum or None if the list is empty
+
+    Now, complete the following function based on its intent. 
+    You only need to procide the completed function. no need for 
+    explanations or examples:
+
+    Code
+    
+  def calculate_average ( scores ) :
+    total = 0
+    # TODO : Complete to return average
+    pass
+
+",Codestral-2501,"```python
+def calculate_average(scores):
+    total = sum(scores)  # Sum all scores
+    return total / len(scores) if scores else 0  # Return the average
+```",Exact Match: True
+20,"max_tokens=1024,
+ temperature = 0.3","
+    Your task is to complete the function based on its intent.
+
+    ### Example 1:
+
+    Original code:
+
+        def calculate_average(scores):
+            total = 0
+            # TODO: Complete to return average
+            pass
+
+    Completed function:
+
+        def calculate_average(scores):
+            total = sum(scores)  # Sum all scores
+            return total / len(scores) if scores else 0  # Return the average
+
+    ### Example 2:
+
+    Original code:
+
+        def find_max(numbers):
+            max_num = None
+            # TODO: Complete to return the maximum number
+            pass
+
+    Completed function:
+
+        def find_max(numbers):
+            max_num = max(numbers)  # Use max function to get the maximum
+            return max_num if numbers else None  # Return the maximum or None if the list is empty
+
+    Now, complete the following function based on its intent. 
+    You only need to procide the completed function. no need for 
+    explanations or examples:
+
+    Code
+    
+  def calculate_average ( scores ) :
+    total = 0
+    # TODO : Complete to return average
+    pass
+
+",GPT-4o-mini,"```python
+def calculate_average(scores):
+    total = sum(scores)  # Sum all scores
+    return total / len(scores) if scores else 0  # Return the average
+```",Exact Match: True
+21,"max_tokens=1024,
+ temperature = 0.3","
+    Your task is to analyze the utility script below for any potential logic issues, design flaws, or readability concerns. Then, refactor the code to improve correctness, safety, and readability.
+
+    ### Example 1:
+
+    Original code:
+
+        import csv
+        def read_csv(filepath):
+            with open(filepath, 'r') as f:
+                return [row for row in csv.reader(f)]
+
+        def summarize_column(data, index):
+            values = [float(row[index]) for row in data[1:]]  # skip header
+            total = sum(values)
+            avg = total / len(values)
+            return total, avg
+
+        def main():
+            filepath = 'data.csv'
+            data = read_csv(filepath)
+            total, avg = summarize_column(data, 1)
+            print(""Total:"", total)
+            print(""Average:"", avg)
+
+        if __name__ == '__main__':
+            main()
+
+    Refactored code:
+
+        import csv
+
+        def read_csv(filepath):
+            """"""Reads a CSV file and returns a list of rows.""""""
+            try:
+                with open(filepath, 'r') as f:
+                    return [row for row in csv.reader(f)]
+            except FileNotFoundError:
+                print(f""Error: The file at {filepath} does not exist."")
+                return []
+
+        def summarize_column(data, index):
+            """"""Summarizes a column in the CSV data, calculating the total and average.""""""
+            if not data:
+                return 0, 0
+            values = [float(row[index]) for row in data[1:]]  # skip header
+            if len(values) == 0:
+                return 0, 0
+            total = sum(values)
+            avg = total / len(values)
+            return total, avg
+
+        def main():
+            """"""Main function to process CSV file and print summary.""""""
+            filepath = 'data.csv'
+            data = read_csv(filepath)
+            if data:
+                total, avg = summarize_column(data, 1)
+                print(""Total:"", total)
+                print(""Average:"", avg)
+            else:
+                print(""No data to process."")
+
+        if __name__ == '__main__':
+            main()
+
+    Explanation: The original script had a few issues:
+    - If the file doesn't exist, the program would crash. We added exception handling for `FileNotFoundError`.
+    - If the `data` list is empty or the column to summarize has no valid values, the program might divide by zero or fail. We added checks to return default values of `0` for both total and average in such cases.
+    - Added docstrings to functions for better clarity.
+    - Included checks to ensure the script gracefully handles errors and edge cases.
+
+    ### Example 2:
+
+    Original code:
+
+        def calculate_area(radius):
+            return 3.14 * radius ** 2
+
+        def calculate_circumference(radius):
+            return 2 * 3.14 * radius
+
+        def main():
+            r = float(input(""Enter the radius: ""))
+            print(""Area:"", calculate_area(r))
+            print(""Circumference:"", calculate_circumference(r))
+
+    Refactored code:
+
+        import math
+
+        def calculate_area(radius):
+            """"""Calculates area of a circle given radius.""""""
+            return math.pi * radius ** 2
+
+        def calculate_circumference(radius):
+            """"""Calculates circumference of a circle given radius.""""""
+            return 2 * math.pi * radius
+
+        def main():
+            """"""Main function to read input and calculate circle properties.""""""
+            try:
+                r = float(input(""Enter the radius: ""))
+                print(""Area:"", calculate_area(r))
+                print(""Circumference:"", calculate_circumference(r))
+            except ValueError:
+                print(""Error: Please enter a valid numeric value for radius."")
+
+        if __name__ == '__main__':
+            main()
+
+    Explanation: The refactoring here included:
+    - Replaced the constant `3.14` with `math.pi` for more precision.
+    - Added exception handling for non-numeric input for radius.
+    - Included docstrings to explain the functions.
+
+    Now, analyze and refactor the following script for improvements. 
+    You only need to provide the final refactored code. no need for 
+    explanation or examples:
+
+    Code
+
+    
+    # utils .py - Script to parse and summarize numeric CSV files
+    import csv
+    def read_csv ( filepath ) :
+      with open ( filepath , ’r’) as f :
+        return [ row for row in csv . reader ( f ) ]
+
+    def summarize_column ( data , index ) :
+      values = [ float ( row [ index ]) for row in data [1:]] # skip header
+      total = sum( values )
+      avg = total / len ( values )
+      return total , avg
+
+    def main () :
+      filepath = ’data .csv ’
+      data = read_csv ( filepath )
+      total , avg = summarize_column ( data , 1)
+      print ("" Total :"", total )
+      print ("" Average :"", avg )
+
+    if __name__ == ’__main__ ’:
+      main ()
+
+",Codestral-2501,"```python
+# utils.py - Script to parse and summarize numeric CSV files
+import csv
+
+def read_csv(filepath):
+    """"""Reads a CSV file and returns a list of rows.""""""
+    try:
+        with open(filepath, 'r') as f:
+            return [row for row in csv.reader(f)]
+    except FileNotFoundError:
+        print(f""Error: The file at {filepath} does not exist."")
+        return []
+
+def summarize_column(data, index):
+    """"""Summarizes a column in the CSV data, calculating the total and average.""""""
+    if not data:
+        return 0, 0
+    try:
+        values = [float(row[index]) for row in data[1:]]  # skip header
+        if not values:
+            return 0, 0
+        total = sum(values)
+        avg = total / len(values)
+        return total, avg
+    except (ValueError, IndexError):
+        print(f""Error: Unable to process column at index {index}."")
+        return 0, 0
+
+def main():
+    """"""Main function to process CSV file and print summary.""""""
+    filepath = 'data.csv'
+    data = read_csv(filepath)
+    if data:
+        total, avg = summarize_column(data, 1)
+        print(""Total:"", total)
+        print(""Average:"", avg)
+    else:
+        print(""No data to process."")
+
+if __name__ == '__main__':
+    main()
+```",Exact Match: False
+21,"max_tokens=1024,
+ temperature = 0.3","
+    Your task is to analyze the utility script below for any potential logic issues, design flaws, or readability concerns. Then, refactor the code to improve correctness, safety, and readability.
+
+    ### Example 1:
+
+    Original code:
+
+        import csv
+        def read_csv(filepath):
+            with open(filepath, 'r') as f:
+                return [row for row in csv.reader(f)]
+
+        def summarize_column(data, index):
+            values = [float(row[index]) for row in data[1:]]  # skip header
+            total = sum(values)
+            avg = total / len(values)
+            return total, avg
+
+        def main():
+            filepath = 'data.csv'
+            data = read_csv(filepath)
+            total, avg = summarize_column(data, 1)
+            print(""Total:"", total)
+            print(""Average:"", avg)
+
+        if __name__ == '__main__':
+            main()
+
+    Refactored code:
+
+        import csv
+
+        def read_csv(filepath):
+            """"""Reads a CSV file and returns a list of rows.""""""
+            try:
+                with open(filepath, 'r') as f:
+                    return [row for row in csv.reader(f)]
+            except FileNotFoundError:
+                print(f""Error: The file at {filepath} does not exist."")
+                return []
+
+        def summarize_column(data, index):
+            """"""Summarizes a column in the CSV data, calculating the total and average.""""""
+            if not data:
+                return 0, 0
+            values = [float(row[index]) for row in data[1:]]  # skip header
+            if len(values) == 0:
+                return 0, 0
+            total = sum(values)
+            avg = total / len(values)
+            return total, avg
+
+        def main():
+            """"""Main function to process CSV file and print summary.""""""
+            filepath = 'data.csv'
+            data = read_csv(filepath)
+            if data:
+                total, avg = summarize_column(data, 1)
+                print(""Total:"", total)
+                print(""Average:"", avg)
+            else:
+                print(""No data to process."")
+
+        if __name__ == '__main__':
+            main()
+
+    Explanation: The original script had a few issues:
+    - If the file doesn't exist, the program would crash. We added exception handling for `FileNotFoundError`.
+    - If the `data` list is empty or the column to summarize has no valid values, the program might divide by zero or fail. We added checks to return default values of `0` for both total and average in such cases.
+    - Added docstrings to functions for better clarity.
+    - Included checks to ensure the script gracefully handles errors and edge cases.
+
+    ### Example 2:
+
+    Original code:
+
+        def calculate_area(radius):
+            return 3.14 * radius ** 2
+
+        def calculate_circumference(radius):
+            return 2 * 3.14 * radius
+
+        def main():
+            r = float(input(""Enter the radius: ""))
+            print(""Area:"", calculate_area(r))
+            print(""Circumference:"", calculate_circumference(r))
+
+    Refactored code:
+
+        import math
+
+        def calculate_area(radius):
+            """"""Calculates area of a circle given radius.""""""
+            return math.pi * radius ** 2
+
+        def calculate_circumference(radius):
+            """"""Calculates circumference of a circle given radius.""""""
+            return 2 * math.pi * radius
+
+        def main():
+            """"""Main function to read input and calculate circle properties.""""""
+            try:
+                r = float(input(""Enter the radius: ""))
+                print(""Area:"", calculate_area(r))
+                print(""Circumference:"", calculate_circumference(r))
+            except ValueError:
+                print(""Error: Please enter a valid numeric value for radius."")
+
+        if __name__ == '__main__':
+            main()
+
+    Explanation: The refactoring here included:
+    - Replaced the constant `3.14` with `math.pi` for more precision.
+    - Added exception handling for non-numeric input for radius.
+    - Included docstrings to explain the functions.
+
+    Now, analyze and refactor the following script for improvements. 
+    You only need to provide the final refactored code. no need for 
+    explanation or examples:
+
+    Code
+
+    
+    # utils .py - Script to parse and summarize numeric CSV files
+    import csv
+    def read_csv ( filepath ) :
+      with open ( filepath , ’r’) as f :
+        return [ row for row in csv . reader ( f ) ]
+
+    def summarize_column ( data , index ) :
+      values = [ float ( row [ index ]) for row in data [1:]] # skip header
+      total = sum( values )
+      avg = total / len ( values )
+      return total , avg
+
+    def main () :
+      filepath = ’data .csv ’
+      data = read_csv ( filepath )
+      total , avg = summarize_column ( data , 1)
+      print ("" Total :"", total )
+      print ("" Average :"", avg )
+
+    if __name__ == ’__main__ ’:
+      main ()
+
+",GPT-4o-mini,"```python
+# utils.py - Script to parse and summarize numeric CSV files
+import csv
+
+def read_csv(filepath):
+    """"""Reads a CSV file and returns a list of rows.""""""
+    try:
+        with open(filepath, 'r') as f:
+            return [row for row in csv.reader(f)]
+    except FileNotFoundError:
+        print(f""Error: The file at {filepath} does not exist."")
+        return []
+    except Exception as e:
+        print(f""An error occurred while reading the file: {e}"")
+        return []
+
+def summarize_column(data, index):
+    """"""Summarizes a column in the CSV data, calculating the total and average.""""""
+    if not data or len(data) <= 1:  # Check if data is empty or has no rows except header
+        return 0, 0
+    try:
+        values = [float(row[index]) for row in data[1:]]  # skip header
+        if len(values) == 0:
+            return 0, 0
+        total = sum(values)
+        avg = total / len(values)
+        return total, avg
+    except (ValueError, IndexError) as e:
+        print(f""Error processing column {index}: {e}"")
+        return 0, 0
+
+def main():
+    """"""Main function to process CSV file and print summary.""""""
+    filepath = 'data.csv'
+    data = read_csv(filepath)
+    if data:
+        total, avg = summarize_column(data, 1)
+        print(""Total:"", total)
+        print(""Average:"", avg)
+    else:
+        print(""No data to process."")
+
+if __name__ == '__main__':
+    main()
+```",Exact Match: False
+22,"max_tokens=1024,
+ temperature = 0.3","
+    Your task is to complete and improve the following Python script that processes a text file. The script should clean each line by removing punctuation, converting the text to lowercase, and then count the frequency of each word in the file. Ensure robustness by handling edge cases.
+
+    ### Example 1:
+
+    Original script:
+
+        import string
+
+        def clean_line(line):
+            # TODO: Remove punctuation and make lowercase
+            pass
+
+        def count_words(lines):
+            word_counts = {}
+            for line in lines:
+                clean = clean_line(line)
+            for word in clean.split():
+                word_counts[word] = word_counts.get(word, 0) + 1
+            return word_counts
+
+        def main():
+            filepath = 'input.txt'
+            lines = load_file(filepath)
+            counts = count_words(lines)
+            for word, count in sorted(counts.items()):
+                print(f""{word}: {count}"")
+
+        if __name__ == '__main__':
+            main()
+
+    Refactored code:
+
+        import string
+
+        def clean_line(line):
+            """"""Removes punctuation, converts text to lowercase, and returns the cleaned line.""""""
+            translator = str.maketrans('', '', string.punctuation)
+            return line.translate(translator).lower()
+
+        def count_words(lines):
+            """"""Counts the frequency of each word in the provided lines.""""""
+            word_counts = {}
+            for line in lines:
+                clean = clean_line(line)
+                for word in clean.split():
+                    word_counts[word] = word_counts.get(word, 0) + 1
+            return word_counts
+
+        def load_file(filepath):
+            """"""Reads and returns lines from the given file.""""""
+            with open(filepath, 'r') as f:
+                return f.readlines()
+
+        def main():
+            """"""Main function to process the file and print word frequencies.""""""
+            filepath = 'input.txt'
+            lines = load_file(filepath)
+            counts = count_words(lines)
+            for word, count in sorted(counts.items()):
+                print(f""{word}: {count}"")
+
+        if __name__ == '__main__':
+            main()
+
+    ### Example 2:
+
+    Original script:
+
+        import string
+
+        def clean_line(line):
+            # TODO: Remove punctuation and make lowercase
+            pass
+
+        def count_words(lines):
+            word_counts = {}
+            for line in lines:
+                clean = clean_line(line)
+            for word in clean.split():
+                word_counts[word] = word_counts.get(word, 0) + 1
+            return word_counts
+
+        def main():
+            filepath = 'input.txt'
+            lines = load_file(filepath)
+            counts = count_words(lines)
+            for word, count in sorted(counts.items()):
+                print(f""{word}: {count}"")
+
+        if __name__ == '__main__':
+            main()
+
+    Refactored code:
+
+        import string
+
+        def clean_line(line):
+            """"""Removes punctuation and makes the text lowercase.""""""
+            return line.translate(str.maketrans('', '', string.punctuation)).lower()
+
+        def count_words(lines):
+            """"""Counts the frequency of words from the provided lines.""""""
+            word_counts = {}
+            for line in lines:
+                clean = clean_line(line)
+                for word in clean.split():
+                    word_counts[word] = word_counts.get(word, 0) + 1
+            return word_counts
+
+        def load_file(filepath):
+            """"""Reads file and returns the lines.""""""
+            with open(filepath, 'r') as f:
+                return f.readlines()
+
+        def main():
+            """"""Processes the input file and prints word frequencies.""""""
+            filepath = 'input.txt'
+            lines = load_file(filepath)
+            counts = count_words(lines)
+            for word, count in sorted(counts.items()):
+                print(f""{word}: {count}"")
+
+        if __name__ == '__main__':
+            main()
+
+    Now, analyze and complete the following script to 
+    process a file and count word frequencies. You 
+    only need to provide the final script. No need for 
+    explanations or examples:
+
+    Code
+
+    
+# file_processor .py - Incomplete script for processing text files
+import string
+
+def load_file ( filepath ) :
+  with open ( filepath , ’r’) as f :
+    return f . readlines ()
+
+def clean_line ( line ) :
+  # TODO : Remove punctuation and make lowercase
+  pass
+
+def count_words ( lines ) :
+  word_counts = {}
+  for line in lines :
+    clean = clean_line ( line )
+  for word in clean . split () :
+    word_counts [ word ] = word_counts . get ( word , 0) + 1
+  return word_counts
+
+def main () :
+  filepath = ’input .txt ’
+  lines = load_file ( filepath )
+  counts = count_words ( lines )
+  for word , count in sorted ( counts . items () ) :
+    print ( f""{ word }: { count }"")
+
+if __name__ == ’__main__ ’:
+  main ()
+
+",Codestral-2501,"Here is the completed and improved script for processing a text file and counting word frequencies:
+
+```python
+# file_processor.py - Script for processing text files and counting word frequencies
+import string
+
+def load_file(filepath):
+    """"""Reads and returns lines from the given file.""""""
+    with open(filepath, 'r') as f:
+        return f.readlines()
+
+def clean_line(line):
+    """"""Removes punctuation and converts text to lowercase.""""""
+    translator = str.maketrans('', '', string.punctuation)
+    return line.translate(translator).lower()
+
+def count_words(lines):
+    """"""Counts the frequency of each word in the provided lines.""""""
+    word_counts = {}
+    for line in lines:
+        clean = clean_line(line)
+        for word in clean.split():
+            if word:  # Ensure word is not empty
+                word_counts[word] = word_counts.get(word, 0) + 1
+    return word_counts
+
+def main():
+    """"""Main function to process the file and print word frequencies.""""""
+    filepath = 'input.txt'
+    try:
+        lines = load_file(filepath)
+        counts = count_words(lines)
+        for word, count in sorted(counts.items()):
+            print(f""{word}: {count}"")
+    except FileNotFoundError:
+        print(f""Error: The file '{filepath}' was not found."")
+    except Exception as e:
+        print(f""An error occurred: {e}"")
+
+if __name__ == '__main__':
+    main()
+```
+
+### Key Improvements:
+1. **Error Handling**: Added try-except blocks to handle file not found errors and other potential exceptions.
+2. **Robustness**: Ensured that empty words are not counted by checking `if word:` before updating the word count.
+3. **Code Readability**: Improved docstrings and added comments for better understanding.
+4. **Correct Quotation Marks**: Fixed the incorrect quotation marks in the original script.",Exact Match: False
+22,"max_tokens=1024,
+ temperature = 0.3","
+    Your task is to complete and improve the following Python script that processes a text file. The script should clean each line by removing punctuation, converting the text to lowercase, and then count the frequency of each word in the file. Ensure robustness by handling edge cases.
+
+    ### Example 1:
+
+    Original script:
+
+        import string
+
+        def clean_line(line):
+            # TODO: Remove punctuation and make lowercase
+            pass
+
+        def count_words(lines):
+            word_counts = {}
+            for line in lines:
+                clean = clean_line(line)
+            for word in clean.split():
+                word_counts[word] = word_counts.get(word, 0) + 1
+            return word_counts
+
+        def main():
+            filepath = 'input.txt'
+            lines = load_file(filepath)
+            counts = count_words(lines)
+            for word, count in sorted(counts.items()):
+                print(f""{word}: {count}"")
+
+        if __name__ == '__main__':
+            main()
+
+    Refactored code:
+
+        import string
+
+        def clean_line(line):
+            """"""Removes punctuation, converts text to lowercase, and returns the cleaned line.""""""
+            translator = str.maketrans('', '', string.punctuation)
+            return line.translate(translator).lower()
+
+        def count_words(lines):
+            """"""Counts the frequency of each word in the provided lines.""""""
+            word_counts = {}
+            for line in lines:
+                clean = clean_line(line)
+                for word in clean.split():
+                    word_counts[word] = word_counts.get(word, 0) + 1
+            return word_counts
+
+        def load_file(filepath):
+            """"""Reads and returns lines from the given file.""""""
+            with open(filepath, 'r') as f:
+                return f.readlines()
+
+        def main():
+            """"""Main function to process the file and print word frequencies.""""""
+            filepath = 'input.txt'
+            lines = load_file(filepath)
+            counts = count_words(lines)
+            for word, count in sorted(counts.items()):
+                print(f""{word}: {count}"")
+
+        if __name__ == '__main__':
+            main()
+
+    ### Example 2:
+
+    Original script:
+
+        import string
+
+        def clean_line(line):
+            # TODO: Remove punctuation and make lowercase
+            pass
+
+        def count_words(lines):
+            word_counts = {}
+            for line in lines:
+                clean = clean_line(line)
+            for word in clean.split():
+                word_counts[word] = word_counts.get(word, 0) + 1
+            return word_counts
+
+        def main():
+            filepath = 'input.txt'
+            lines = load_file(filepath)
+            counts = count_words(lines)
+            for word, count in sorted(counts.items()):
+                print(f""{word}: {count}"")
+
+        if __name__ == '__main__':
+            main()
+
+    Refactored code:
+
+        import string
+
+        def clean_line(line):
+            """"""Removes punctuation and makes the text lowercase.""""""
+            return line.translate(str.maketrans('', '', string.punctuation)).lower()
+
+        def count_words(lines):
+            """"""Counts the frequency of words from the provided lines.""""""
+            word_counts = {}
+            for line in lines:
+                clean = clean_line(line)
+                for word in clean.split():
+                    word_counts[word] = word_counts.get(word, 0) + 1
+            return word_counts
+
+        def load_file(filepath):
+            """"""Reads file and returns the lines.""""""
+            with open(filepath, 'r') as f:
+                return f.readlines()
+
+        def main():
+            """"""Processes the input file and prints word frequencies.""""""
+            filepath = 'input.txt'
+            lines = load_file(filepath)
+            counts = count_words(lines)
+            for word, count in sorted(counts.items()):
+                print(f""{word}: {count}"")
+
+        if __name__ == '__main__':
+            main()
+
+    Now, analyze and complete the following script to 
+    process a file and count word frequencies. You 
+    only need to provide the final script. No need for 
+    explanations or examples:
+
+    Code
+
+    
+# file_processor .py - Incomplete script for processing text files
+import string
+
+def load_file ( filepath ) :
+  with open ( filepath , ’r’) as f :
+    return f . readlines ()
+
+def clean_line ( line ) :
+  # TODO : Remove punctuation and make lowercase
+  pass
+
+def count_words ( lines ) :
+  word_counts = {}
+  for line in lines :
+    clean = clean_line ( line )
+  for word in clean . split () :
+    word_counts [ word ] = word_counts . get ( word , 0) + 1
+  return word_counts
+
+def main () :
+  filepath = ’input .txt ’
+  lines = load_file ( filepath )
+  counts = count_words ( lines )
+  for word , count in sorted ( counts . items () ) :
+    print ( f""{ word }: { count }"")
+
+if __name__ == ’__main__ ’:
+  main ()
+
+",GPT-4o-mini,"```python
+# file_processor.py - Script for processing text files
+import string
+
+def load_file(filepath):
+    """"""Reads and returns lines from the given file.""""""
+    with open(filepath, 'r') as f:
+        return f.readlines()
+
+def clean_line(line):
+    """"""Removes punctuation, converts text to lowercase, and returns the cleaned line.""""""
+    translator = str.maketrans('', '', string.punctuation)
+    return line.translate(translator).lower()
+
+def count_words(lines):
+    """"""Counts the frequency of each word in the provided lines.""""""
+    word_counts = {}
+    for line in lines:
+        clean = clean_line(line)
+        for word in clean.split():
+            if word:  # Ensure the word is not empty
+                word_counts[word] = word_counts.get(word, 0) + 1
+    return word_counts
+
+def main():
+    """"""Main function to process the file and print word frequencies.""""""
+    filepath = 'input.txt'
+    lines = load_file(filepath)
+    counts = count_words(lines)
+    for word, count in sorted(counts.items()):
+        print(f""{word}: {count}"")
+
+if __name__ == '__main__':
+    main()
+```",Exact Match: False
