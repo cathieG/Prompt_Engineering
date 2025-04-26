@@ -1,0 +1,929 @@
+prompt_id,parameters,prompt_text,model_name,output_text,score
+1,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Summarize what this function does in two sentences or less:""
+
+    public Map<String, Integer> countWordFrequency(List<String> words) {
+    Map<String, Integer> freqMap = new HashMap<>();
+    for (String word : words) {
+        freqMap.put(word, freqMap.getOrDefault(word, 0) + 1);
+    }
+    return freqMap;
+}",Codestral-2501,"This function takes a list of words and returns a map where the keys are the words from the list and the values are the frequencies of those words. It iterates through the list, updating the count for each word in the map.",Bleu-4 Score: 30.65076
+1,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Summarize what this function does in two sentences or less:""
+
+    public Map<String, Integer> countWordFrequency(List<String> words) {
+    Map<String, Integer> freqMap = new HashMap<>();
+    for (String word : words) {
+        freqMap.put(word, freqMap.getOrDefault(word, 0) + 1);
+    }
+    return freqMap;
+}",GPT-4o-mini,"The function `countWordFrequency` takes a list of words as input and returns a map that counts the frequency of each word in the list. It uses a HashMap to store the words as keys and their corresponding counts as values, updating the count for each word as it iterates through the list.",Bleu-4 Score: 30.65076
+2,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Identify and fix the off-by one error. Please provide only the completed funcion:""
+
+    def sum_range(start, end):
+    total = 0
+    for i in range(start, end):
+        total += i
+    return total",Codestral-2501,"```python
+def sum_range(start, end):
+    total = 0
+    for i in range(start, end + 1):
+        total += i
+    return total
+```",Match: True
+2,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Identify and fix the off-by one error. Please provide only the completed funcion:""
+
+    def sum_range(start, end):
+    total = 0
+    for i in range(start, end):
+        total += i
+    return total",GPT-4o-mini,"```python
+def sum_range(start, end):
+    total = 0
+    for i in range(start, end + 1):
+        total += i
+    return total
+```",Match: True
+3,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Classify the type of bug in the C++ function. Do nothing else besides this. This should be one sentence:""
+
+    int* getArray(int size) {
+    int arr[size]; // Warning: local array
+    return arr; // Bug: returning pointer to local variable
+}",Codestral-2501,Returning pointer to local variable,Bleu-4 Score: 2.74093
+3,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Classify the type of bug in the C++ function. Do nothing else besides this. This should be one sentence:""
+
+    int* getArray(int size) {
+    int arr[size]; // Warning: local array
+    return arr; // Bug: returning pointer to local variable
+}",GPT-4o-mini,"The bug is returning a pointer to a local variable, which leads to undefined behavior.",Bleu-4 Score: 2.74093
+4,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Complete the function using regex to validate basic email addresses. Don't explain your process, just give me the completed code:""
+
+    def is_valid_email(email):
+    # TODO: Complete using regex
+    pass",Codestral-2501,"```python
+import re
+
+def is_valid_email(email):
+    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return bool(re.match(pattern, email))
+```",Match: False
+4,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Complete the function using regex to validate basic email addresses. Don't explain your process, just give me the completed code:""
+
+    def is_valid_email(email):
+    # TODO: Complete using regex
+    pass",GPT-4o-mini,"```python
+import re
+
+def is_valid_email(email):
+    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return re.match(pattern, email) is not None
+```",Match: False
+5,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Create a‘/greet/<username>‘endpoint that returns a JSON greeting. Don't explain your process. Just give me the completed code:""
+
+    from flask import Flask, jsonify
+app = Flask(__name__)
+@app.route(’/greet/<username>’)
+def greet(username):
+    # TODO: Return a JSON greeting
+    pass",Codestral-2501,"```python
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+@app.route('/greet/<username>')
+def greet(username):
+    return jsonify(message=f""Hello, {username}!"")
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```",Match: False
+5,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Create a‘/greet/<username>‘endpoint that returns a JSON greeting. Don't explain your process. Just give me the completed code:""
+
+    from flask import Flask, jsonify
+app = Flask(__name__)
+@app.route(’/greet/<username>’)
+def greet(username):
+    # TODO: Return a JSON greeting
+    pass",GPT-4o-mini,"```python
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+@app.route('/greet/<username>')
+def greet(username):
+    return jsonify(greeting=f""Hello, {username}!"")
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```",Match: False
+6,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Write the schema for a review app with users,books,andreviews. Don't explain your process, just give me the end result:""
+
+    -- TODO: Design schema with appropriate keys and constraints
+-- Tables: users(id, name), books(id, title), reviews(id, user_id, book_id, rating)",Codestral-2501,"```sql
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE books (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE reviews (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    book_id INT NOT NULL,
+    rating INT CHECK (rating >= 1 AND rating <= 5),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (book_id) REFERENCES books(id)
+);
+```",Match: False
+6,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Write the schema for a review app with users,books,andreviews. Don't explain your process, just give me the end result:""
+
+    -- TODO: Design schema with appropriate keys and constraints
+-- Tables: users(id, name), books(id, title), reviews(id, user_id, book_id, rating)",GPT-4o-mini,"```sql
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE books (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE reviews (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    book_id INT NOT NULL,
+    rating INT CHECK (rating >= 1 AND rating <= 5),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
+);
+```",Match: False
+7,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Identify any null dereference risks in the code and summarize them briefly in a sentence or two:""
+
+    public int getLength(String s) {
+    return s.length(); // What if s is null?
+}",Codestral-2501,"The code contains a null dereference risk. If the input string `s` is `null`, calling `s.length()` will result in a `NullPointerException` because the `length()` method cannot be invoked on a `null` object. To mitigate this risk, you should add a null check before calling `s.length()`.",Bleu-4 Score: 51.54409
+7,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Identify any null dereference risks in the code and summarize them briefly in a sentence or two:""
+
+    public int getLength(String s) {
+    return s.length(); // What if s is null?
+}",GPT-4o-mini,"The code contains a null dereference risk because if the input string `s` is `null`, calling `s.length()` will result in a `NullPointerException`. To mitigate this risk, a null check should be added before attempting to access the length of the string.",Bleu-4 Score: 51.54409
+8,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Improve the parser to support quoted fields. Don't explain your process, just give me the final code.""
+
+    def parse_csv_line(line):
+    return line.split(’,’) # Incomplete: doesn’t handle quoted fields",Codestral-2501,"```python
+def parse_csv_line(line):
+    fields = []
+    field = []
+    in_quotes = False
+    escape_next = False
+
+    for char in line:
+        if escape_next:
+            field.append(char)
+            escape_next = False
+        elif char == '\\':
+            escape_next = True
+        elif char == '""':
+            in_quotes = not in_quotes
+        elif char == ',' and not in_quotes:
+            fields.append(''.join(field))
+            field = []
+        else:
+            field.append(char)
+
+    fields.append(''.join(field))
+    return fields
+```",Match: False
+8,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Improve the parser to support quoted fields. Don't explain your process, just give me the final code.""
+
+    def parse_csv_line(line):
+    return line.split(’,’) # Incomplete: doesn’t handle quoted fields",GPT-4o-mini,"```python
+import csv
+
+def parse_csv_line(line):
+    return next(csv.reader([line]))
+```",Match: False
+9,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Convert the data class to a  REST API using Ktor. Just give me the final code without explaining your process:""
+
+    data class Product(val id: Int, val name: String, val price: Double)
+// TODO: Create GET and POST endpoints using Ktor",Codestral-2501,"```kotlin
+import io.ktor.application.*
+import io.ktor.features.ContentNegotiation
+import io.ktor.http.*
+import io.ktor.request.*
+import io.ktor.response.*
+import io.ktor.routing.*
+import io.ktor.serialization.*
+import io.ktor.server.engine.*
+import io.ktor.server.netty.*
+
+data class Product(val id: Int, val name: String, val price: Double)
+
+fun main() {
+    embeddedServer(Netty, port = 8080) {
+        install(ContentNegotiation) {
+            json()
+        }
+        routing {
+            val products = mutableListOf<Product>()
+
+            get(""/products"") {
+                call.respond(products)
+            }
+
+            post(""/products"") {
+                val product = call.receive<Product>()
+                products.add(product)
+                call.respondText(""Product stored correctly"", status = HttpStatusCode.Created)
+            }
+        }
+    }.start(wait = true)
+}
+```",Match: False
+9,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Convert the data class to a  REST API using Ktor. Just give me the final code without explaining your process:""
+
+    data class Product(val id: Int, val name: String, val price: Double)
+// TODO: Create GET and POST endpoints using Ktor",GPT-4o-mini,"```kotlin
+import io.ktor.application.*
+import io.ktor.features.ContentNegotiation
+import io.ktor.http.HttpStatusCode
+import io.ktor.jackson.jackson
+import io.ktor.request.receive
+import io.ktor.response.respond
+import io.ktor.routing.*
+import io.ktor.server.engine.embeddedServer
+import io.ktor.server.netty.Netty
+import io.ktor.serialization.kotlinx.json.json
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
+
+data class Product(val id: Int, val name: String, val price: Double)
+
+val products = mutableListOf<Product>()
+val mutex = Mutex()
+
+fun main() {
+    embeddedServer(Netty, port = 8080) {
+        install(ContentNegotiation) {
+            jackson {}
+        }
+        routing {
+            route(""/products"") {
+                get {
+                    mutex.withLock {
+                        call.respond(products)
+                    }
+                }
+                post {
+                    val product = call.receive<Product>()
+                    mutex.withLock {
+                        products.add(product)
+                        call.respond(HttpStatusCode.Created, product)
+                    }
+                }
+            }
+        }
+    }.start(wait = true)
+}
+```",Match: False
+10,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Summarize the function in two sentences or less:""
+
+    def reverse_words(sentence):
+    return ’ ’.join(sentence.split()[::-1])",Codestral-2501,"The `reverse_words` function takes a sentence as input and returns the sentence with the order of words reversed. It splits the sentence into words, reverses the list of words, and then joins them back into a single string.",Bleu-4 Score: 39.6663
+10,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Summarize the function in two sentences or less:""
+
+    def reverse_words(sentence):
+    return ’ ’.join(sentence.split()[::-1])",GPT-4o-mini,"The `reverse_words` function takes a string `sentence`, splits it into individual words, reverses the order of those words, and then joins them back together into a single string with spaces in between. The result is the original sentence with the word order reversed.",Bleu-4 Score: 39.6663
+11,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Write a prompt that could generate the code below. No need to explain your reasoning, you can just give me the prompt:""
+
+    # This function checks if a number is prime
+def is_prime ( n ) :
+if n <= 1:
+return False
+for i in range (2 , int ( n **0.5) +1) :
+if n % i == 0:
+return False
+return True",Codestral-2501,"Write a Python function named `is_prime` that takes an integer `n` as input and returns `True` if `n` is a prime number, and `False` otherwise.",Bleu-4 Score: 18.14559
+11,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Write a prompt that could generate the code below. No need to explain your reasoning, you can just give me the prompt:""
+
+    def is_prime ( n ) :
+if n <= 1:
+return False
+for i in range (2 , int ( n **0.5) +1) :
+if n % i == 0:
+return False
+return True",GPT-4o-mini,"Write a Python function named is_prime that takes an integer n and is intended to check if the number 
+is prime. Leave the function body unimplemented with a pass statement, and include a comment above 
+the function explaining its purpose.",Bleu-4 Score: 18.14559
+12,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Fix the bug when the input is 0. Just give me the final code without explaining anything else:""
+
+    def factorial(n):
+    result = 1
+    for i in range(1, n):
+        result *= i
+    return result",Codestral-2501,"```python
+def factorial(n):
+    if n == 0:
+        return 1
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
+```",Match: True
+12,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Fix the bug when the input is 0. Just give me the final code without explaining anything else:""
+
+    def factorial(n):
+    result = 1
+    for i in range(1, n):
+        result *= i
+    return result",GPT-4o-mini,"```python
+def factorial(n):
+    if n == 0:
+        return 1
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
+```",Match: True
+13,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""implement node deletion by value. Just give me the finished code, don't explain anything:""
+
+    struct Node {
+    int data;
+    struct Node* next;
+};
+void deleteNode(struct Node** head, int key) {
+    // TODO: Implement node deletion
+}",Codestral-2501,"```c
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+void deleteNode(struct Node** head, int key) {
+    struct Node* temp = *head;
+    struct Node* prev = NULL;
+
+    // If head node itself holds the key to be deleted
+    if (temp != NULL && temp->data == key) {
+        *head = temp->next; // Changed head
+        free(temp);         // Free old head
+        return;
+    }
+
+    // Search for the key to be deleted, keep track of the
+    // previous node as we need to change 'prev->next'
+    while (temp != NULL && temp->data != key) {
+        prev = temp;
+        temp = temp->next;
+    }
+
+    // If key was not present in linked list
+    if (temp == NULL) return;
+
+    // Unlink the node from linked list
+    prev->next = temp->next;
+
+    free(temp); // Free memory
+}
+```",Match: False
+13,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""implement node deletion by value. Just give me the finished code, don't explain anything:""
+
+    struct Node {
+    int data;
+    struct Node* next;
+};
+void deleteNode(struct Node** head, int key) {
+    // TODO: Implement node deletion
+}",GPT-4o-mini,"```c
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+void deleteNode(struct Node** head, int key) {
+    struct Node* temp = *head;
+    struct Node* prev = NULL;
+
+    // If the head node itself holds the key to be deleted
+    if (temp != NULL && temp->data == key) {
+        *head = temp->next; // Changed head
+        free(temp);         // Free old head
+        return;
+    }
+
+    // Search for the key to be deleted, keep track of the previous node
+    while (temp != NULL && temp->data != key) {
+        prev = temp;
+        temp = temp->next;
+    }
+
+    // If the key was not present in the linked list
+    if (temp == NULL) return;
+
+    // Unlink the node from linked list
+    prev->next = temp->next;
+
+    free(temp); // Free memory
+}
+```",Match: False
+14,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Complete the recursive function for Fibonacci. Only give me the completed code. Don't explain anything:""
+
+    def fibonacci(n):
+    # TODO: Base cases and recursive call
+    pass",Codestral-2501,"```python
+def fibonacci(n):
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+```",Match: False
+14,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Complete the recursive function for Fibonacci. Only give me the completed code. Don't explain anything:""
+
+    def fibonacci(n):
+    # TODO: Base cases and recursive call
+    pass",GPT-4o-mini,"```python
+def fibonacci(n):
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+```",Match: False
+15,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Complete the class constructor. Don't explain your process, just give me the finished constructor.""
+
+    class Person:
+    def __init__(self):
+        # TODO: Add name, age, and optional email
+        pass",Codestral-2501,"```python
+class Person:
+    def __init__(self, name, age, email=None):
+        self.name = name
+        self.age = age
+        self.email = email
+```",Match: True
+15,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Complete the class constructor. Don't explain your process, just give me the finished constructor.""
+
+    class Person:
+    def __init__(self):
+        # TODO: Add name, age, and optional email
+        pass",GPT-4o-mini,"```python
+class Person:
+    def __init__(self, name, age, email=None):
+        self.name = name
+        self.age = age
+        self.email = email
+```",Match: True
+16,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Complete the binary search implementation and return only the final code without explanation:
+
+    public int binarySearch(int[] arr, int target) {
+    int left = 0, right = arr.length- 1;
+    while (left <= right) {
+        int mid = (left + right) / 2;
+        // TODO: Compare and adjust bounds
+    }
+    return -1;
+}",Codestral-2501,"```java
+public int binarySearch(int[] arr, int target) {
+    int left = 0, right = arr.length - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] == target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1;
+}
+```",Match: False
+16,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Complete the binary search implementation and return only the final code without explanation:
+
+    public int binarySearch(int[] arr, int target) {
+    int left = 0, right = arr.length- 1;
+    while (left <= right) {
+        int mid = (left + right) / 2;
+        // TODO: Compare and adjust bounds
+    }
+    return -1;
+}",GPT-4o-mini,"```java
+public int binarySearch(int[] arr, int target) {
+    int left = 0, right = arr.length - 1;
+    while (left <= right) {
+        int mid = (left + right) / 2;
+        if (arr[mid] == target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1;
+}
+```",Match: False
+17,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Resolve inconsistency between function name and logic. Don't explain what you did and why, just give me the corrected code:""
+
+    // Supposed to return true if x is even
+bool isOdd(int x) {
+    return x % 2 == 0; // Logic contradicts function name
+}",Codestral-2501,"```cpp
+bool isEven(int x) {
+    return x % 2 == 0;
+}
+```",Match: True
+17,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Resolve inconsistency between function name and logic. Don't explain what you did and why, just give me the corrected code:""
+
+    // Supposed to return true if x is even
+bool isOdd(int x) {
+    return x % 2 == 0; // Logic contradicts function name
+}",GPT-4o-mini,"```cpp
+bool isEven(int x) {
+    return x % 2 == 0;
+}
+```",Match: True
+18,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Fix the bug in the function. Just give me the final code, and don't explain or write about anything else:""
+
+    function isEven(n) {
+    return n % 2; // Returns 1 or 0, not true/false
+}",Codestral-2501,"```javascript
+function isEven(n) {
+    return n % 2 === 0;
+}
+```",Match: True
+18,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Fix the bug in the function. Just give me the final code, and don't explain or write about anything else:""
+
+    function isEven(n) {
+    return n % 2; // Returns 1 or 0, not true/false
+}",GPT-4o-mini,"```javascript
+function isEven(n) {
+    return n % 2 === 0;
+}
+```",Match: True
+19,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Take the sumamry/comment, decompose it, then rewrite it into more logical steps. Don't explain your process, just give me your final output:""
+
+    // Function that validates an input, calculates square, and returns result
+int process(int x) {
+    if (x < 0) return-1;
+    return x * x;
+}",Codestral-2501,"```c
+int process(int x) {
+    if (x < 0) {
+        return -1;
+    }
+    int result = x * x;
+    return result;
+}
+```",Bleu-4 Score: 1.34122
+19,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Take the sumamry/comment, decompose it, then rewrite it into more logical steps. Don't explain your process, just give me your final output:""
+
+    // Function that validates an input, calculates square, and returns result
+int process(int x) {
+    if (x < 0) return-1;
+    return x * x;
+}",GPT-4o-mini,"1. Define a function named `process` that takes an integer input `x`.
+2. Check if `x` is less than 0:
+   - If true, return -1.
+3. If `x` is 0 or greater, calculate the square of `x` by multiplying `x` by itself.
+4. Return the squared result.",Bleu-4 Score: 1.34122
+20,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Finish the rest of the function. Just give me the final function, nothing else:""
+
+    def calculate_average(scores):
+    total = 0
+    # TODO: Complete to return average
+    pass",Codestral-2501,"```python
+def calculate_average(scores):
+    total = 0
+    for score in scores:
+        total += score
+    return total / len(scores)
+```",Match: False
+20,"max_tokens=1024,
+ temperature = 0.3","
+    Prompt: ""Finish the rest of the function. Just give me the final function, nothing else:""
+
+    def calculate_average(scores):
+    total = 0
+    # TODO: Complete to return average
+    pass",GPT-4o-mini,"```python
+def calculate_average(scores):
+    total = sum(scores)
+    return total / len(scores) if scores else 0
+```",Match: False
+21,"max_tokens=1024,
+ temperature = 0.3","
+
+    Prompt: ""Analyze the utility script, find any logical issues or design flaws, then refactor the code for better readability, correctness, and safety. Don't explain your process or reasoning. Just give me the refactored code with no comments:""
+
+    # utils.py - Script to parse and summarize numeric CSV files
+import csv
+
+def read_csv(filepath):
+    with open(filepath, ’r’) as f:
+        return [row for row in csv.reader(f)]
+
+def summarize_column(data, index):
+    values = [float(row[index]) for row in data[1:]] # skip header
+    total = sum(values)
+    avg = total / len(values)
+    return total, avg
+
+def main():
+    filepath = ’data.csv’
+    data = read_csv(filepath)
+    total, avg = summarize_column(data, 1)
+    print(""Total:"", total)
+    print(""Average:"", avg)
+
+if __name__ == ’__main__’:
+    main()",Codestral-2501,"```python
+# utils.py - Script to parse and summarize numeric CSV files
+import csv
+
+def read_csv(filepath):
+    with open(filepath, 'r') as f:
+        return list(csv.reader(f))
+
+def summarize_column(data, index):
+    if not data or len(data) < 2:
+        raise ValueError(""Data must contain at least one header row and one data row."")
+    values = [float(row[index]) for row in data[1:]]  # skip header
+    total = sum(values)
+    avg = total / len(values)
+    return total, avg
+
+def main():
+    filepath = 'data.csv'
+    data = read_csv(filepath)
+    total, avg = summarize_column(data, 1)
+    print(""Total:"", total)
+    print(""Average:"", avg)
+
+if __name__ == '__main__':
+    main()
+```",Match: False
+21,"max_tokens=1024,
+ temperature = 0.3","
+
+    Prompt: ""Analyze the utility script, find any logical issues or design flaws, then refactor the code for better readability, correctness, and safety. Don't explain your process or reasoning. Just give me the refactored code with no comments:""
+
+    # utils.py - Script to parse and summarize numeric CSV files
+import csv
+
+def read_csv(filepath):
+    with open(filepath, ’r’) as f:
+        return [row for row in csv.reader(f)]
+
+def summarize_column(data, index):
+    values = [float(row[index]) for row in data[1:]] # skip header
+    total = sum(values)
+    avg = total / len(values)
+    return total, avg
+
+def main():
+    filepath = ’data.csv’
+    data = read_csv(filepath)
+    total, avg = summarize_column(data, 1)
+    print(""Total:"", total)
+    print(""Average:"", avg)
+
+if __name__ == ’__main__’:
+    main()",GPT-4o-mini,"```python
+import csv
+
+def read_csv(filepath):
+    with open(filepath, 'r') as f:
+        return [row for row in csv.reader(f)]
+
+def summarize_column(data, index):
+    values = [float(row[index]) for row in data[1:] if row[index]]
+    if not values:
+        return 0, 0
+    total = sum(values)
+    avg = total / len(values)
+    return total, avg
+
+def main():
+    filepath = 'data.csv'
+    data = read_csv(filepath)
+    if len(data) > 1:
+        total, avg = summarize_column(data, 1)
+        print(""Total:"", total)
+        print(""Average:"", avg)
+    else:
+        print(""No data to summarize."")
+
+if __name__ == '__main__':
+    main()
+```",Match: False
+22,"max_tokens=1024,
+ temperature = 0.3","
+
+    Prompt: ""Complete the following code, making sure you write in the missing code as well as cleaning up each line, removing punctuation, and making sure it counts word frequencies correctly. Don't explain your process. Just output the completed code:""
+
+    # file_processor.py - Incomplete script for processing text files
+import string
+
+def load_file(filepath):
+    with open(filepath, ’r’) as f:
+        return f.readlines()
+
+def clean_line(line):
+    # TODO: Remove punctuation and make lowercase
+    pass
+
+def count_words(lines):
+    word_counts = {}
+    for line in lines:
+        clean = clean_line(line)
+        for word in clean.split():
+            word_counts[word] = word_counts.get(word, 0) + 1
+    return word_counts
+
+def main():
+    filepath = ’input.txt’
+    lines = load_file(filepath)
+    counts = count_words(lines)
+    for word, count in sorted(counts.items()):
+        print(f""{word}: {count}"")
+
+if __name__ == ’__main__’:
+    main()",Codestral-2501,"```python
+# file_processor.py - Incomplete script for processing text files
+import string
+
+def load_file(filepath):
+    with open(filepath, 'r') as f:
+        return f.readlines()
+
+def clean_line(line):
+    # Remove punctuation and make lowercase
+    return line.translate(str.maketrans('', '', string.punctuation)).lower()
+
+def count_words(lines):
+    word_counts = {}
+    for line in lines:
+        clean = clean_line(line)
+        for word in clean.split():
+            word_counts[word] = word_counts.get(word, 0) + 1
+    return word_counts
+
+def main():
+    filepath = 'input.txt'
+    lines = load_file(filepath)
+    counts = count_words(lines)
+    for word, count in sorted(counts.items()):
+        print(f""{word}: {count}"")
+
+if __name__ == '__main__':
+    main()
+```",Match: False
+22,"max_tokens=1024,
+ temperature = 0.3","
+
+    Prompt: ""Complete the following code, making sure you write in the missing code as well as cleaning up each line, removing punctuation, and making sure it counts word frequencies correctly. Don't explain your process. Just output the completed code:""
+
+    # file_processor.py - Incomplete script for processing text files
+import string
+
+def load_file(filepath):
+    with open(filepath, ’r’) as f:
+        return f.readlines()
+
+def clean_line(line):
+    # TODO: Remove punctuation and make lowercase
+    pass
+
+def count_words(lines):
+    word_counts = {}
+    for line in lines:
+        clean = clean_line(line)
+        for word in clean.split():
+            word_counts[word] = word_counts.get(word, 0) + 1
+    return word_counts
+
+def main():
+    filepath = ’input.txt’
+    lines = load_file(filepath)
+    counts = count_words(lines)
+    for word, count in sorted(counts.items()):
+        print(f""{word}: {count}"")
+
+if __name__ == ’__main__’:
+    main()",GPT-4o-mini,"```python
+# file_processor.py - Incomplete script for processing text files
+import string
+
+def load_file(filepath):
+    with open(filepath, 'r') as f:
+        return f.readlines()
+
+def clean_line(line):
+    return line.translate(str.maketrans('', '', string.punctuation)).lower()
+
+def count_words(lines):
+    word_counts = {}
+    for line in lines:
+        clean = clean_line(line)
+        for word in clean.split():
+            word_counts[word] = word_counts.get(word, 0) + 1
+    return word_counts
+
+def main():
+    filepath = 'input.txt'
+    lines = load_file(filepath)
+    counts = count_words(lines)
+    for word, count in sorted(counts.items()):
+        print(f""{word}: {count}"")
+
+if __name__ == '__main__':
+    main()
+```",Match: False
